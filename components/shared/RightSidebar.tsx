@@ -30,7 +30,7 @@ const RightSidebar = () => {
     <section className="background-light900_dark200 light-border custom-scrollbar sticky  right-0  top-0 flex  h-screen w-[350px]  flex-col justify-between  overflow-y-auto border-l  p-6 pt-36 shadow-light-300 dark:shadow-none max-xl:hidden">
       {/* Top Questions */}
       <div>
-        <h3 className="h3-bold">Hot Network</h3>
+        <h3 className="h3-bold text-dark400_light900">Hot Network</h3>
         <div className="mt-6 flex w-full flex-col gap-8 ">
           {hotQuestions.map((question) => (
             <Link
@@ -54,7 +54,7 @@ const RightSidebar = () => {
       </div>
       {/* Tags */}
       <div className="mt-16">
-        <h3 className="h3-bold">Popular Tags</h3>
+        <h3 className="h3-bold text-dark400_light900">Popular Tags</h3>
         <div className="mt-7 flex flex-1 flex-col gap-6">
           {popularTags.map((tag) => (
             <RenderTag
