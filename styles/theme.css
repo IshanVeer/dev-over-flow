@@ -191,6 +191,9 @@
   .primary-gradient {
     background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
   }
+  .primary-hover-gradient{
+    background: linear-gradient(129deg, #e96500 0%, #e2995f 100%);
+  }
 
   .dark-gradient {
     background: linear-gradient(
