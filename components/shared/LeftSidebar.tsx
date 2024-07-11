@@ -28,9 +28,11 @@ const LeftSidebar = () => {
                 alt={link.label}
                 width={23}
                 height={23}
-                className={`${isActive ? "" : "invert-colors"}`}
+                className={`${isActive ? "" : "invert-colors"} `}
               />
-              <p className={`${isActive ? "base-bold" : "base-medium"}`}>
+              <p
+                className={`${isActive ? "base-bold" : "base-medium"} max-lg:hidden`}
+              >
                 {link.label}
               </p>
             </Link>
@@ -47,22 +49,36 @@ const LeftSidebar = () => {
                 width={23}
                 height={23}
               />
-              <span>Logout</span>
+              <span className="max-lg:hidden">Logout</span>
             </Button>
           </SignOutButton>
         </div>
       </SignedIn>
       <SignedOut>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4 max-lg:items-center">
           <Link href="/sign-in">
-            <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 text-lg shadow-none transition duration-150 ">
-              <span className="primary-text-gradient">Login</span>
+            <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 text-lg shadow-none transition duration-150  ">
+              <Image
+                src="/assets/icons/account.svg"
+                alt="signin"
+                width={23}
+                height={23}
+                className="invert-colors lg:hidden"
+              />
+              <span className="primary-text-gradient max-lg:hidden">Login</span>
             </Button>
           </Link>
 
           <Link href="/sign-up">
-            <Button className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg px-4 py-3 text-lg shadow-none transition duration-150">
-              Sign Up
+            <Button className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg px-4 py-3 text-lg shadow-none transition duration-150 ">
+              <Image
+                src="/assets/icons/sign-up.svg"
+                alt="signin"
+                width={23}
+                height={23}
+                className="invert-colors lg:hidden"
+              />
+              <span className="max-lg:hidden">Sign Up</span>
             </Button>
           </Link>
         </div>
