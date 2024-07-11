@@ -1,4 +1,5 @@
 import LocalSearch from "@/components/shared/LocalSearch";
+import RenderFilters from "@/components/shared/RenderFilters";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -15,8 +16,11 @@ export default function Home() {
         </Link>
       </div>
       {/* Search and filter */}
-      <div className="mt-8">
+      <div className="mt-8 flex items-center gap-8">
         <LocalSearch placeholder="Search for Questions Here..." />
+        <div>
+          <RenderFilters />
+        </div>
       </div>
       {/* questions */}
       <div></div>
