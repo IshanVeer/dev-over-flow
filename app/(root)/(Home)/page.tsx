@@ -1,7 +1,9 @@
-import LocalSearch from "@/components/shared/LocalSearch";
+import LocalSearch from "@/components/shared/search/LocalSearch";
 import RenderFilters from "@/components/shared/RenderFilters";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { HomePageFilters } from "@/constants/filters";
+import HomeFilters from "@/components/shared/home/HomeFilters";
 
 export default function Home() {
   return (
@@ -18,9 +20,13 @@ export default function Home() {
       {/* Search and filter */}
       <div className="mt-8 flex items-center gap-8">
         <LocalSearch placeholder="Search for Questions Here..." />
-        <div>
-          <RenderFilters />
+        <div className="md:hidden">
+          <RenderFilters filters={HomePageFilters} />
         </div>
+      </div>
+      {/* Home filter buttons */}
+      <div className="mt-8 max-md:hidden">
+        <HomeFilters />
       </div>
       {/* questions */}
       <div></div>

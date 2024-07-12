@@ -45,4 +45,9 @@ export interface BadgeCounts {
   BRONZE: number;
 }
 
+export type Filter = {
+  value: string;
+  name: string;
+};
+
 export type BadgeCriteriaType = keyof typeof BADGE_CRITERIA;
