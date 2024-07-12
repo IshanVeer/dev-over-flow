@@ -191,6 +191,13 @@
   .primary-gradient {
     background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
   }
+  .text-primary-gradient {
+    background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
   .primary-hover-gradient{
     background: linear-gradient(129deg, #e96500 0%, #e2995f 100%);
   }
