@@ -55,9 +55,9 @@ export default function Home() {
         </Link>
       </div>
       {/* Search and filter */}
-      <div className="mt-8 flex items-center gap-8">
+      <div className="mt-8 flex items-center gap-8 max-sm:flex-col">
         <LocalSearch placeholder="Search for Questions Here..." />
-        <div className="md:hidden">
+        <div className="max-sm:w-full md:hidden">
           <RenderFilters filters={HomePageFilters} />
         </div>
       </div>

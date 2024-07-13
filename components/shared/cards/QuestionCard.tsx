@@ -32,7 +32,9 @@ interface QuestionProps {
 const QuestionCard = ({ question }: QuestionProps) => {
   return (
     <Card padding="px-12 py-8" margin="mb-6">
-      <p className="sm:hidden">{getTimestamp(question.createdAt)}</p>
+      <p className="small-regular text-dark200_light800 mb-3 sm:hidden">
+        {getTimestamp(question.createdAt)}
+      </p>
 
       <Link href="/">
         <h3 className="h3-semibold text-dark400_light900 mb-4 line-clamp-1 ">
