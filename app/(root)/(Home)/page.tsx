@@ -5,6 +5,7 @@ import Link from "next/link";
 import { HomePageFilters } from "@/constants/filters";
 import HomeFilters from "@/components/home/HomeFilters";
 import QuestionCard from "@/components/shared/cards/QuestionCard";
+import NoResult from "@/components/shared/NoResult";
 
 const questions = [
   {
@@ -48,7 +49,7 @@ export default function Home() {
       {/* Heading and ask a question button */}
       <div className="flex items-center justify-between">
         <h1 className="h1-bold text-dark400_light900">All Questions</h1>
-        <Link href="/" className="cursor-pointer">
+        <Link href="/ask-question" className="cursor-pointer">
           <Button className="primary-gradient hover:primary-hover-gradient min-h-[46px] w-full px-4 py-3 text-light-850 transition duration-150">
             Ask a Question
           </Button>
@@ -67,9 +68,17 @@ export default function Home() {
       </div>
       {/* questions */}
       <div className="mt-8">
-        {questions.map((question) => (
-          <QuestionCard key={question._id} question={question} />
-        ))}
+        {questions.length > 0 ? (
+          questions.map((question) => (
+            <QuestionCard key={question._id} question={question} />
+          ))
+        ) : (
+          <NoResult
+            title="There’s no question to show"
+            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. our query could be the next big thing others learn from. Get involved! 💡"
+            btnText="Ask a Question"
+          />
+        )}
       </div>
     </>
   );
