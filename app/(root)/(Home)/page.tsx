@@ -5,6 +5,7 @@ import Link from "next/link";
 import { HomePageFilters } from "@/constants/filters";
 import HomeFilters from "@/components/home/HomeFilters";
 import QuestionCard from "@/components/shared/cards/QuestionCard";
+import NoResult from "@/components/shared/NoResult";
 
 const questions = [
   {
@@ -67,9 +68,17 @@ export default function Home() {
       </div>
       {/* questions */}
       <div className="mt-8">
-        {questions.map((question) => (
-          <QuestionCard key={question._id} question={question} />
-        ))}
+        {questions.length > 0 ? (
+          questions.map((question) => (
+            <QuestionCard key={question._id} question={question} />
+          ))
+        ) : (
+          <NoResult
+            title="There’s no question to show"
+            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. our query could be the next big thing others learn from. Get involved! 💡"
+            btnText="Ask a Question"
+          />
+        )}
       </div>
     </>
   );
