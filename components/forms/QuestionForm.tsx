@@ -187,7 +187,7 @@ const QuestionForm = () => {
                   <Input
                     className="no-focus text-dark400_light800 paragraph-regular background-light800_dark300 mb-2 mt-3 w-full py-6 dark:border-none"
                     placeholder="...Add Tags"
-                    onKeyDown={(e) => addTagHandler(e, field, form)}
+                    onKeyDown={(e) => addTagHandler(e, field)}
                   />
                   {field.value.length > 0 && (
                     <div className="mb-2 mt-2.5">
