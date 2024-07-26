@@ -195,7 +195,7 @@ const QuestionForm = () => {
                         <Badge
                           key={tag}
                           className="subtle-medium background-light800_dark300 text-light400_light500 mr-2.5 cursor-pointer rounded-md p-1.5 capitalize "
-                          onClick={() => tagRemoveHandler(field, tag)}
+                          onClick={() => tagRemoveHandler(tag, field)}
                         >
                           {tag}{" "}
                           <Image
