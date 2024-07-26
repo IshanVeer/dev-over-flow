@@ -125,8 +125,13 @@ const QuestionForm = () => {
               <FormControl>
                 <Editor
                   apiKey={process.env.NEXT_PUBLIC_EDITOR_API_KEY}
+                  onBlur={field.onBlur}
+                  onEditorChange={(content) => {
+                    field.onChange(content);
+                  }}
+                  // @ts-ignore
                   onInit={(_evt, editor) => (editorRef.current = editor)}
-                  initialValue="<p>This is the initial content of the editor.</p>"
+                  initialValue=""
                   init={{
                     height: 350,
                     menubar: false,
