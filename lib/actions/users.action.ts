@@ -12,6 +12,7 @@ import { revalidatePath } from "next/cache";
 // Create User
 
 export const createUser = async (userData: CreateUserParams) => {
+  console.log(userData, "userData");
   try {
     connectToDatabase();
 
