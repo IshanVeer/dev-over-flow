@@ -17,7 +17,6 @@ const LocalSearch = ({ placeholder }: Props) => {
       />
       <Input
         type="text"
-        value=""
         placeholder={placeholder}
         className="no-focus paragraph-regular placeholder:paragraph-regular placeholder border-none bg-transparent px-0 shadow-none outline-none"
       />
