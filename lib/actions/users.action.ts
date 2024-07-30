@@ -41,7 +41,7 @@ export const updateUser = async (params: UpdateUserParams) => {
   try {
     connectToDatabase();
     const { clerkId, updateData, path } = params;
-    await User.findByIdAndUpdate({ clerkId }, updateData, { new: true });
+    await User.findOneAndUpdate({ clerkId }, updateData, { new: true });
     revalidatePath(path); // ensuring that any cached or statically generated pages are updated to reflect the changes made to the user data.
   } catch (error) {
     console.log(error);
