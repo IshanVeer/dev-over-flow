@@ -9,6 +9,18 @@ import { revalidatePath } from "next/cache";
 
 // Get user by ID
 
+export const getUserById = async (params: any) => {
+  try {
+    connectToDatabase();
+    const { userId } = params;
+    const user = await User.findOne({ clerkId: userId });
+    return user;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 // Create User
 
 export const createUser = async (userData: CreateUserParams) => {
