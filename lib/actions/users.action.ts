@@ -54,7 +54,7 @@ export const deleteUser = async (params: DeleteUserParams) => {
   try {
     connectToDatabase();
     const { clerkId } = params;
-    const user = await User.findByIdAndDelete({ clerkId });
+    const user = await User.findOneAndDelete({ clerkId });
 
     if (!user) {
       console.log("user does not exist");
