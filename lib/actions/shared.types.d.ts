@@ -1,4 +1,5 @@
 import { IUser } from "@/database/users.model";
+import { Schema } from "mongoose";
 export interface CreateUserParams {
   clerkId: String;
   name: String;
@@ -15,4 +16,12 @@ export interface UpdateUserParams {
 
 export interface DeleteUserParams {
   clerkId: string;
+}
+
+export interface CreateQuestionsParams {
+  title: string;
+  content: string;
+  tags: string[];
+  author: Schema.Types.ObjectId | IUser;
+  path: string;
 }
