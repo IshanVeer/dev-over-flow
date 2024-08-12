@@ -6,7 +6,7 @@ import { HomePageFilters } from "@/constants/filters";
 import HomeFilters from "@/components/home/HomeFilters";
 import QuestionCard from "@/components/shared/cards/QuestionCard";
 import NoResult from "@/components/shared/NoResult";
-import { getUserById } from "@/lib/actions/users.action";
+
 
 const questions = [
   {
@@ -46,9 +46,7 @@ const questions = [
 ];
 
 export default async function Home() {
-  const userId = "clerk12345";
-  const mongdoUser = await getUserById({ userId });
-  console.log(mongdoUser);
+
   return (
     <>
       {/* Heading and ask a question button */}
