@@ -19,11 +19,20 @@ import { QuestionsSchema } from "@/lib/validations";
 import { Editor } from "@tinymce/tinymce-react";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
+import { createQuestions } from "@/lib/actions/questions.action";
+import { usePathname } from "next/navigation";
+
+interface Props {
+  mongoUserId: string;
+}
 
 const type: any = "create";
 
-const QuestionForm = () => {
+const QuestionForm = ({ mongoUserId }: Props) => {
+  const pathname = usePathname();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  console.log(mongoUserId, "mongoUserID");
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof QuestionsSchema>>({
     resolver: zodResolver(QuestionsSchema),
@@ -35,9 +44,19 @@ const QuestionForm = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof QuestionsSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
     setIsSubmitting(true);
     console.log(values, "values");
+    console.log("started submitting values");
+    await createQuestions({
+      title: values.title,
+      content: values.explanation,
+      tags: values.tags,
+      author: JSON.parse(mongoUserId),
+      path: pathname,
+    });
+    console.log("submitted values");
+
     setIsSubmitting(false);
   }
   // Question editor initialisation
