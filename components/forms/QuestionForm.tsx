@@ -20,7 +20,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createQuestions } from "@/lib/actions/questions.action";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   mongoUserId: string;
@@ -30,6 +30,7 @@ const type: any = "create";
 
 const QuestionForm = ({ mongoUserId }: Props) => {
   const pathname = usePathname();
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   console.log(mongoUserId, "mongoUserID");
 
@@ -48,14 +49,21 @@ const QuestionForm = ({ mongoUserId }: Props) => {
     setIsSubmitting(true);
     console.log(values, "values");
     console.log("started submitting values");
-    await createQuestions({
-      title: values.title,
-      content: values.explanation,
-      tags: values.tags,
-      author: JSON.parse(mongoUserId),
-      path: pathname,
-    });
-    console.log("submitted values");
+    try {
+      await createQuestions({
+        title: values.title,
+        content: values.explanation,
+        tags: values.tags,
+        author: JSON.parse(mongoUserId),
+        path: pathname,
+      });
+      console.log("submitted values");
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
 
     setIsSubmitting(false);
   }
