@@ -10,6 +10,10 @@ async function AskQuestion() {
     redirect("/sign-in");
   }
   const mongoUser = await getUserById({ userId });
+  if (!mongoUser) {
+    console.log("User not found in mongoDb");
+    return <div>404 User Not Found</div>;
+  }
   console.log("user");
   console.log(mongoUser, "mongoUser");
   return (
