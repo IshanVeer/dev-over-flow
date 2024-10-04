@@ -4,14 +4,31 @@ import Question from "@/database/questions.model";
 import { CreateQuestionsParams } from "./shared.types";
 import Tag from "@/database/tags.model";
 import { revalidatePath } from "next/cache";
+import User from "@/database/users.model";
 
+// get questions
+export const getQuestions = async () => {
+  connectToDatabase();
+  try {
+    const questions = await Question.find({})
+      .populate({ path: "tags", model: Tag })
+      .populate({ path: "author", model: User })
+      .sort({ createdAt: -1 });
+
+    return { questions };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+// create question
 export const createQuestions = async (params: CreateQuestionsParams) => {
   try {
     console.log("connecting to database");
     connectToDatabase();
     const { title, content, tags, author, path } = params;
 
-    // create question
     const question = await Question.create({
       title,
       content,
