@@ -15,7 +15,7 @@ interface Props {
 const RenderFilters = ({ filters }: Props) => {
   return (
     <Select>
-      <SelectTrigger className="background-light800_darkgradient no-focus text-dark500_light700 flex w-full justify-between px-4 py-7 shadow-sm sm:min-w-[170px] ">
+      <SelectTrigger className="background-light800_darkgradient no-focus text-dark500_light700 flex w-full justify-between border-none px-4 py-7 shadow-sm sm:min-w-[170px] ">
         <SelectValue placeholder="Select a Filter" />
       </SelectTrigger>
 
