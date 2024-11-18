@@ -25,7 +25,6 @@ export const getUserById = async (params: any) => {
 // Create User
 
 export const createUser = async (userData: CreateUserParams) => {
-  console.log(userData, "userData");
   try {
     connectToDatabase();
 
@@ -58,7 +57,7 @@ export const deleteUser = async (params: DeleteUserParams) => {
     const user = await User.findOneAndDelete({ clerkId });
 
     if (!user) {
-      console.log("user does not exist");
+      return;
     }
     return user;
   } catch (error) {

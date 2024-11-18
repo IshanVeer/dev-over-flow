@@ -8,7 +8,7 @@ import QuestionCard from "@/components/shared/cards/QuestionCard";
 import NoResult from "@/components/shared/NoResult";
 import { getQuestions } from "@/lib/actions/questions.action";
 
-export default async function Home() {
+const Home = async () => {
   const result = await getQuestions();
 
   return (
@@ -49,4 +49,5 @@ export default async function Home() {
       </div>
     </>
   );
-}
+};
+export default Home;
