@@ -25,3 +25,8 @@ export interface CreateQuestionsParams {
   author: Schema.Types.ObjectId | IUser;
   path: string;
 }
+export interface GetAllUsersParams {}
+
+export interface GetInteractedTagsParams {
+  userId: string;
+}

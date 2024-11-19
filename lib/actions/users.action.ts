@@ -4,9 +4,22 @@ import { connectToDatabase } from "../mongoose";
 import {
   CreateUserParams,
   DeleteUserParams,
+  GetAllUsersParams,
   UpdateUserParams,
 } from "./shared.types";
 import { revalidatePath } from "next/cache";
+
+// Template action
+/* 
+export const getAllUsers = async () => {
+  try {
+    connectToDatabase();
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+ */
 
 // Get user by ID
 
@@ -60,6 +73,19 @@ export const deleteUser = async (params: DeleteUserParams) => {
       return;
     }
     return user;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+// Get All users
+export const getAllUsers = async (params: GetAllUsersParams) => {
+  try {
+    connectToDatabase();
+    const users = await User.find({}).sort({ createdAt: -1 });
+
+    return { users };
   } catch (error) {
     console.log(error);
     throw error;
