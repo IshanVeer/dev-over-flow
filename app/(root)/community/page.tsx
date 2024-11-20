@@ -1,9 +1,9 @@
 import UserCard from "@/components/shared/cards/UserCard";
+import NoResult from "@/components/shared/NoResult";
 import RenderFilters from "@/components/shared/RenderFilters";
 import LocalSearch from "@/components/shared/search/LocalSearch";
 import { UserFilters } from "@/constants/filters";
 import { getAllUsers } from "@/lib/actions/users.action";
-import Link from "next/link";
 
 import React from "react";
 
@@ -19,16 +19,19 @@ const Community = async () => {
           <RenderFilters filters={UserFilters} />
         </div>
       </div>
-      <section className="my-16 grid grid-cols-3 gap-2">
+      <section className="my-16 ">
         {result.users.length > 0 ? (
-          result.users.map((user) => <UserCard key={user._id} user={user} />)
-        ) : (
-          <div className="paragraph-regular mx-auto my-12 max-w-4xl text-center">
-            <h3>No Users yet</h3>
-            <Link className="mt-2 font-bold text-accent-blue" href="/sign-up">
-              Join to be the first!
-            </Link>
+          <div className="  grid-cols-2 gap-2 md:grid lg:grid-cols-3 ">
+            {result.users.map((user) => (
+              <UserCard key={user._id} user={user} />
+            ))}
           </div>
+        ) : (
+          <NoResult
+            title="There are no users to show"
+            description="Unlock the door to endless possibilities! 🚀 Sign in and join the conversation and be part of a vibrant community. Your journey of growth starts here! 💡"
+            btnText="Sign In"
+          />
         )}
       </section>
     </>

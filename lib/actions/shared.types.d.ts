@@ -30,3 +30,4 @@ export interface GetAllUsersParams {}
 export interface GetInteractedTagsParams {
   userId: string;
 }
+export interface GetAllTagsParams {}
