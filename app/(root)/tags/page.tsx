@@ -21,10 +21,10 @@ const Tags = async () => {
       </div>
       <section className="my-16 ">
         {result.tags.length > 0 ? (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid-cols-2 gap-4 md:grid lg:grid-cols-3">
             {result.tags.map((tag) => (
               <div
-                className="background-light900_dark200 light-border shadow-light100_dark100 rounded-lg border  px-6 py-8"
+                className="background-light900_dark200 light-border shadow-light100_dark100 rounded-lg border px-6  py-8 max-md:mb-6"
                 key={tag._id}
               >
                 <Badge className="background-light800_dark400 paragraph-semibold text-dark500_light700 rounded-md px-4 py-2">
