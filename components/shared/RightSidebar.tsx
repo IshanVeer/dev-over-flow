@@ -31,7 +31,7 @@ const RightSidebar = () => {
       {/* Top Questions */}
       <div>
         <h3 className="h3-bold text-dark400_light900">Hot Network</h3>
-        <div className="mt-6 flex w-full flex-col gap-8 ">
+        <div className="mt-6 flex w-full flex-col gap-6 ">
           {hotQuestions.map((question) => (
             <Link
               className="flex cursor-pointer items-start justify-between gap-7"

@@ -5,8 +5,8 @@ import React from "react";
 interface MetricsProps {
   imgURL: string;
   alt: string;
-  value: string | number;
-  label: string;
+  value?: string | number;
+  label?: string;
   isAuthor?: boolean;
   href?: string;
   customStyles?: string;
@@ -32,7 +32,7 @@ const UserMetrics = ({
       />
       <p className={`line-clamp-1 ${customStyles}`}>{value}</p>
       <p
-        className={`small-regular line-clamp-1 ${isAuthor ? "max-sm:hidden" : ""}`}
+        className={`small-medium line-clamp-1 ${isAuthor ? "max-sm:hidden" : ""}`}
       >
         {label}
       </p>
@@ -41,7 +41,7 @@ const UserMetrics = ({
   if (href) {
     return (
       <Link
-        className="text-dark200_light800 body-regular mt-4 flex items-center gap-1"
+        className="text-dark200_light800 body-regular  flex items-center gap-1"
         href={href}
       >
         {userMetricContent}
@@ -49,7 +49,7 @@ const UserMetrics = ({
     );
   }
   return (
-    <div className="text-dark200_light800 body-regular mt-4 flex items-center gap-1">
+    <div className="text-dark200_light800 body-regular  flex items-center gap-1">
       {userMetricContent}
     </div>
   );

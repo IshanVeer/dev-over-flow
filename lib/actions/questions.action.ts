@@ -1,7 +1,7 @@
 "use server";
 import { connectToDatabase } from "../mongoose";
 import Question from "@/database/questions.model";
-import { CreateQuestionsParams } from "./shared.types";
+import { CreateQuestionsParams, GetQuestionById } from "./shared.types";
 import Tag from "@/database/tags.model";
 import { revalidatePath } from "next/cache";
 import User from "@/database/users.model";
@@ -56,5 +56,21 @@ export const createQuestions = async (params: CreateQuestionsParams) => {
     revalidatePath(path);
   } catch (error) {
     console.log(error);
+  }
+};
+
+// Get question by Id
+
+export const getQuestionById = async (params: GetQuestionById) => {
+  try {
+    connectToDatabase();
+    const { questionId } = params;
+    const question = await Question.findById(questionId)
+      .populate({ path: "tags", model: Tag, select: "_id name" })
+      .populate({ path: "author", model: User, select: "_id name" });
+    return question;
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
