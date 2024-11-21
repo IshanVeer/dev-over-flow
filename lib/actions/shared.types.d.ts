@@ -31,3 +31,7 @@ export interface GetInteractedTagsParams {
   userId: string;
 }
 export interface GetAllTagsParams {}
+
+export interface GetQuestionById {
+  questionId: string;
+}
