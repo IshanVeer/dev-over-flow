@@ -1,3 +1,4 @@
+import HTMLParser from "@/components/shared/HTMLParser";
 import RenderTag from "@/components/shared/RenderTag";
 import UserMetrics from "@/components/shared/UserMetrics";
 import { getQuestionById } from "@/lib/actions/questions.action";
@@ -15,11 +16,11 @@ const QuestionDetail = async ({ params }: any) => {
       <div className="mb-4">
         <div className="flex gap-2">
           <Image
-            src="/assets/icons/avatar.svg"
+            src={question.author.picture}
             alt="user"
             height={20}
             width={20}
-            className="invert-colors"
+            className="invert-colors rounded-[50%]"
           />
           <p className="paragraph-semibold text-dark400_light700">
             {question.author.name}
@@ -58,7 +59,7 @@ const QuestionDetail = async ({ params }: any) => {
       </div>
       {/* content */}
       <div className="">
-        <p className="body-regular text-dark400_light700">{question.content}</p>
+        <HTMLParser data={question.content} />
       </div>
 
       {/* tags */}
