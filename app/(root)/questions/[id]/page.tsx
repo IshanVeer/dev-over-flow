@@ -1,6 +1,8 @@
 import HTMLParser from "@/components/shared/HTMLParser";
+import RenderFilters from "@/components/shared/RenderFilters";
 import RenderTag from "@/components/shared/RenderTag";
 import UserMetrics from "@/components/shared/UserMetrics";
+import { AnswerFilters } from "@/constants/filters";
 import { getQuestionById } from "@/lib/actions/questions.action";
 import { formatAndDivide, getTimestamp } from "@/lib/utils";
 import Image from "next/image";
@@ -58,7 +60,7 @@ const QuestionDetail = async ({ params }: any) => {
         />
       </div>
       {/* content */}
-      <div className="">
+      <div className="text-dark500_light700 body-regular">
         <HTMLParser data={question.content} />
       </div>
 
@@ -67,6 +69,13 @@ const QuestionDetail = async ({ params }: any) => {
         {question.tags.map((tag: any) => (
           <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
         ))}
+      </div>
+      {/* Answers Tab */}
+      <div className="flex items-center justify-between">
+        <p className="text-primary-gradient paragraph-medium ">{`${10} Answers`}</p>
+        <div className="max-sm:w-full ">
+          <RenderFilters filters={AnswerFilters} />
+        </div>
       </div>
     </div>
   );

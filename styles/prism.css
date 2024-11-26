@@ -8,7 +8,7 @@
 code[class*="language-"],
 pre[class*="language-"] {
   color: #d6e7ff;
-  background: #030314;
+  background: #0f0f0f;
   text-shadow: none;
   font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono",
     monospace;
@@ -90,7 +90,7 @@ pre[class*="language-"] {
 
 .token.string,
 .token.char {
-  color: #49c6ec;
+  color: #cb74ee;
 }
 
 .token.operator,
@@ -105,12 +105,12 @@ pre[class*="language-"] {
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  color: #0fe468;
+  color: #59b4d3;
 }
 
 .token.function,
 .token.class-name {
-  color: #78f3e9;
+  color: rgb(229, 215, 107);
 }
 
 .token.regex,
