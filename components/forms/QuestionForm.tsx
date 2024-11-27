@@ -47,8 +47,7 @@ const QuestionForm = ({ mongoUserId }: Props) => {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
     setIsSubmitting(true);
-    console.log(values, "values");
-    console.log("started submitting values");
+
     try {
       await createQuestions({
         title: values.title,
@@ -57,7 +56,7 @@ const QuestionForm = ({ mongoUserId }: Props) => {
         author: JSON.parse(mongoUserId),
         path: pathname,
       });
-      console.log("submitted values");
+
       router.push("/");
     } catch (error) {
       console.error(error);
