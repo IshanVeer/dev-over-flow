@@ -1,3 +1,4 @@
+import AnswerForm from "@/components/forms/AnswerForm";
 import HTMLParser from "@/components/shared/HTMLParser";
 import RenderFilters from "@/components/shared/RenderFilters";
 import RenderTag from "@/components/shared/RenderTag";
@@ -77,6 +78,10 @@ const QuestionDetail = async ({ params }: any) => {
           <RenderFilters filters={AnswerFilters} />
         </div>
       </div>
+      <div>
+        <HTMLParser data="demo data" />
+      </div>
+      <AnswerForm />
     </div>
   );
 };
