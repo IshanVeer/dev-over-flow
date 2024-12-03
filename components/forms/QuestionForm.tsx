@@ -21,6 +21,7 @@ import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createQuestions } from "@/lib/actions/questions.action";
 import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "@/context/ThemeProvider";
 
 interface Props {
   mongoUserId: string;
@@ -29,6 +30,7 @@ interface Props {
 const type: any = "create";
 
 const QuestionForm = ({ mongoUserId }: Props) => {
+  const { mode } = useTheme();
   const pathname = usePathname();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -124,8 +126,11 @@ const QuestionForm = ({ mongoUserId }: Props) => {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="paragraph-semibold text-dark200_light900">
-                Question Title <span className="text-primary-500">*</span>
+              <FormLabel>
+                <span className="paragraph-semibold text-dark200_light900">
+                  Question Title
+                </span>{" "}
+                <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl>
                 <Input
@@ -147,8 +152,10 @@ const QuestionForm = ({ mongoUserId }: Props) => {
           name="explanation"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="paragraph-semibold text-dark200_light900">
-                Detailed explanation of your problem?{" "}
+              <FormLabel className="mb-20">
+                <span className="paragraph-semibold text-dark200_light900">
+                  Detailed explanation of your problem?
+                </span>{" "}
                 <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl>
@@ -189,7 +196,9 @@ const QuestionForm = ({ mongoUserId }: Props) => {
                       "undo redo " +
                       "bold italic forecolor codesample | alignleft aligncenter " +
                       "alignright alignjustify | bullist numlist ",
-                    content_style: "body { font-family:Inter; font-size:14px }",
+                    content_style: "body { font-family:Inter; font-size:16px }",
+                    skin: mode === "dark" ? "oxide-dark" : "oxide",
+                    content_css: mode === "dark" ? "dark" : "light",
                   }}
                 />
               </FormControl>
@@ -208,8 +217,11 @@ const QuestionForm = ({ mongoUserId }: Props) => {
           name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="paragraph-semibold text-dark200_light900">
-                Tags <span className="text-primary-500">*</span>
+              <FormLabel>
+                <span className="paragraph-semibold text-dark200_light900">
+                  Tags
+                </span>
+                <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl>
                 <>
