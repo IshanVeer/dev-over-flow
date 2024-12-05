@@ -15,9 +15,18 @@ import { z } from "zod";
 import { useTheme } from "@/context/ThemeProvider";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import { createAnswer } from "@/lib/actions/answer.action";
+import { usePathname } from "next/navigation";
 
-const AnswerForm = () => {
+export interface Props {
+  author: string;
+  questionId: string;
+}
+
+const AnswerForm = ({ author, questionId }: Props) => {
   const { mode } = useTheme();
+  const pathname = usePathname();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   // define form
   const form = useForm<z.infer<typeof AnswerSchema>>({
@@ -32,8 +41,12 @@ const AnswerForm = () => {
     setIsSubmitting(true);
 
     try {
-      console.log(values, "values");
-      console.log("form submitting");
+      await createAnswer({
+        content: values.answer,
+        path: pathname,
+        author: JSON.parse(author),
+        question: JSON.parse(questionId),
+      });
     } catch (error) {
       console.log(error, "error");
       throw error;

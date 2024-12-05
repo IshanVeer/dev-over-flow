@@ -35,3 +35,10 @@ export interface GetAllTagsParams {}
 export interface GetQuestionById {
   questionId: string;
 }
+
+export interface CreateAnswersParams {
+  content: string;
+  question: string;
+  author: Schema.Types.ObjectId | IUser;
+  path: string;
+}

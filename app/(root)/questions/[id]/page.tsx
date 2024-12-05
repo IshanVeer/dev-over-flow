@@ -5,15 +5,19 @@ import RenderTag from "@/components/shared/RenderTag";
 import UserMetrics from "@/components/shared/UserMetrics";
 import { AnswerFilters } from "@/constants/filters";
 import { getQuestionById } from "@/lib/actions/questions.action";
+import { getUserById } from "@/lib/actions/users.action";
 import { formatAndDivide, getTimestamp } from "@/lib/utils";
+import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import React from "react";
 
 const QuestionDetail = async ({ params }: any) => {
   const { id } = params;
+  const { userId } = auth();
 
   const question = await getQuestionById({ questionId: id });
-  console.log(question, "question detail");
+  const mongoUser = await getUserById(userId);
+
   return (
     <div>
       <div className="mb-4">
@@ -81,7 +85,10 @@ const QuestionDetail = async ({ params }: any) => {
       <div>
         <HTMLParser data="demo data" />
       </div>
-      <AnswerForm />
+      <AnswerForm
+        author={JSON.stringify(mongoUser._id)}
+        questionId={JSON.stringify(question._id)}
+      />
     </div>
   );
 };
