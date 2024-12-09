@@ -35,6 +35,8 @@ const AnswerForm = ({ author, questionId }: Props) => {
       answer: "",
     },
   });
+  //   initialising editor ref
+  const editorRef = useRef(null);
 
   //   submit handler
   async function onSubmit(values: z.infer<typeof AnswerSchema>) {
@@ -55,8 +57,7 @@ const AnswerForm = ({ author, questionId }: Props) => {
     setIsSubmitting(false);
     console.log("form submitted");
   }
-  //   initialising editor ref
-  const editorRef = useRef(null);
+
   return (
     <>
       <div className="mb-4 flex items-center justify-between">

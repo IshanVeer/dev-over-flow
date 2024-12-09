@@ -1,4 +1,5 @@
 import AnswerForm from "@/components/forms/AnswerForm";
+import AllAnswers from "@/components/shared/AllAnswers";
 import HTMLParser from "@/components/shared/HTMLParser";
 import RenderFilters from "@/components/shared/RenderFilters";
 import RenderTag from "@/components/shared/RenderTag";
@@ -75,16 +76,16 @@ const QuestionDetail = async ({ params }: any) => {
           <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
         ))}
       </div>
-      {/* Answers Tab */}
+
+      {/* Answer Form */}
       <div className="flex items-center justify-between">
         <p className="text-primary-gradient paragraph-medium ">{`${10} Answers`}</p>
         <div className="max-sm:w-full ">
           <RenderFilters filters={AnswerFilters} />
         </div>
       </div>
-      <div>
-        <HTMLParser data="demo data" />
-      </div>
+      {/* All Answers */}
+      <AllAnswers questionId={question._id} />
       <AnswerForm
         author={JSON.stringify(mongoUser?._id)}
         questionId={JSON.stringify(question._id)}

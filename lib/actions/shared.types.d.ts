@@ -42,3 +42,7 @@ export interface CreateAnswersParams {
   author: Schema.Types.ObjectId | IUser;
   path: string;
 }
+
+export interface GetAnswersParams {
+  questionId: string;
+}
