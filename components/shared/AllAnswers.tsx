@@ -22,7 +22,7 @@ const AllAnswers = async ({ questionId }: Props) => {
             value={answer.author.name}
             label={` - asked ${getTimestamp(answer.createdAt)}`}
             isAuthor
-            href={`/profile/${answer.author._id}`}
+            href={`/profile/${answer.author.clerkId}`}
             customStyles="body-medium"
           />
           {/* content */}
