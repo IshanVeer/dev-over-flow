@@ -16,7 +16,7 @@ const QuestionDetail = async ({ params }: any) => {
   const { userId } = auth();
 
   const question = await getQuestionById({ questionId: id });
-  const mongoUser = await getUserById(userId);
+  const mongoUser = await getUserById({ userId });
 
   return (
     <div>
@@ -86,7 +86,7 @@ const QuestionDetail = async ({ params }: any) => {
         <HTMLParser data="demo data" />
       </div>
       <AnswerForm
-        author={JSON.stringify(mongoUser._id)}
+        author={JSON.stringify(mongoUser?._id)}
         questionId={JSON.stringify(question._id)}
       />
     </div>
