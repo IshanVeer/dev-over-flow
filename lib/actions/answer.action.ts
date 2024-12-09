@@ -12,7 +12,7 @@ export const createAnswer = async (params: CreateAnswersParams) => {
     // get params
     const { author, question, content, path } = params;
     // crete new answer
-    const newAnswer = new Answer({ author, question, content });
+    const newAnswer = await Answer.create({ author, question, content });
 
     // add the new answer to questions model
     await Question.findByIdAndUpdate(question, {
