@@ -20,7 +20,7 @@ const AllAnswers = async ({ questionId }: Props) => {
             imgURL={answer.author.picture}
             alt="user"
             value={answer.author.name}
-            label={` - asked ${getTimestamp(answer.createdAt)}`}
+            label={` - answered ${getTimestamp(answer.createdAt)}`}
             isAuthor
             href={`/profile/${answer.author.clerkId}`}
             customStyles="body-medium"

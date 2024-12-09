@@ -18,6 +18,9 @@ const QuestionDetail = async ({ params }: any) => {
 
   const question = await getQuestionById({ questionId: id });
   const mongoUser = await getUserById({ userId });
+  const totalAnswers = question.answers.length;
+  console.log(question, "question details");
+  console.log(totalAnswers, "answer length");
 
   return (
     <div>
@@ -79,8 +82,8 @@ const QuestionDetail = async ({ params }: any) => {
 
       {/* Answer Form */}
       <div className="flex items-center justify-between">
-        <p className="text-primary-gradient paragraph-medium ">{`${10} Answers`}</p>
-        <div className="max-sm:w-full ">
+        <p className="text-primary-gradient paragraph-medium ">{`${totalAnswers} ${totalAnswers > 1 ? "Answers" : "Answer"}`}</p>
+        <div>
           <RenderFilters filters={AnswerFilters} />
         </div>
       </div>
