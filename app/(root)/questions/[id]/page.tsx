@@ -4,6 +4,7 @@ import HTMLParser from "@/components/shared/HTMLParser";
 import RenderFilters from "@/components/shared/RenderFilters";
 import RenderTag from "@/components/shared/RenderTag";
 import UserMetrics from "@/components/shared/UserMetrics";
+import Votes from "@/components/shared/Votes";
 import { AnswerFilters } from "@/constants/filters";
 import { getQuestionById } from "@/lib/actions/questions.action";
 import { getUserById } from "@/lib/actions/users.action";
@@ -24,7 +25,8 @@ const QuestionDetail = async ({ params }: any) => {
 
   return (
     <div>
-      <div className="mb-4">
+      <div className="mb-4 flex items-center justify-between">
+        {/* author info */}
         <div className="flex gap-2">
           <Image
             src={question.author.picture}
@@ -37,6 +39,8 @@ const QuestionDetail = async ({ params }: any) => {
             {question.author.name}
           </p>
         </div>
+        {/* Upvote / downvote / save */}
+        <Votes showSaveButton={true} />
       </div>
       <h3 className="h2-semibold text-dark200_light900 capitalize">
         {question.title}
