@@ -1,5 +1,7 @@
 import { IUser } from "@/database/users.model";
 import { Schema } from "mongoose";
+
+// user params
 export interface CreateUserParams {
   clerkId: String;
   name: String;
@@ -18,6 +20,7 @@ export interface DeleteUserParams {
   clerkId: string;
 }
 
+// Question Params
 export interface CreateQuestionsParams {
   title: string;
   content: string;
@@ -36,6 +39,12 @@ export interface GetQuestionById {
   questionId: string;
 }
 
+export interface UpvoteQuestionParams {
+  userId: string;
+  question: string;
+}
+
+// answer params
 export interface CreateAnswersParams {
   content: string;
   question: string;

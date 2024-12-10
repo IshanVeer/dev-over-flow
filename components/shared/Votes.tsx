@@ -1,17 +1,26 @@
+"use client";
 import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import { upvoteQuestion } from "@/lib/actions/questions.action";
 
 interface Props {
   showSaveButton?: boolean;
+  userId: string;
+  questionId: string;
+  upvotes: string;
 }
 
-const Votes = ({ showSaveButton }: Props) => {
+const Votes = ({ showSaveButton, userId, questionId, upvotes }: Props) => {
+  const upvoteButtonhandler = () => {
+    upvoteQuestion({ userId, question: JSON.parse(questionId) });
+  };
+
   return (
     <div className="flex gap-1.5">
       {/* upvote */}
       <div className="flex items-center">
-        <Button className="p-2">
+        <Button className="p-2" onClick={upvoteButtonhandler}>
           <Image
             src="/assets/icons/upvote.svg"
             width={18}
@@ -20,7 +29,7 @@ const Votes = ({ showSaveButton }: Props) => {
           />
         </Button>
         <div className="subtle-medium background-light700_dark300 text-dark100_light900 rounded-sm px-1.5 py-1 ">
-          {0}
+          {upvotes}
         </div>
       </div>
       {/* downvote */}

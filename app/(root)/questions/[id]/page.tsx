@@ -20,8 +20,7 @@ const QuestionDetail = async ({ params }: any) => {
   const question = await getQuestionById({ questionId: id });
   const mongoUser = await getUserById({ userId });
   const totalAnswers = question.answers.length;
-  console.log(question, "question details");
-  console.log(totalAnswers, "answer length");
+  const upvotes = question.upvotes.length;
 
   return (
     <div>
@@ -40,7 +39,12 @@ const QuestionDetail = async ({ params }: any) => {
           </p>
         </div>
         {/* Upvote / downvote / save */}
-        <Votes showSaveButton={true} />
+        <Votes
+          showSaveButton={true}
+          userId={mongoUser.id}
+          questionId={JSON.stringify(question._id)}
+          upvotes={upvotes}
+        />
       </div>
       <h3 className="h2-semibold text-dark200_light900 capitalize">
         {question.title}

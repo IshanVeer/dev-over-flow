@@ -1,7 +1,11 @@
 "use server";
 import { connectToDatabase } from "../mongoose";
 import Question from "@/database/questions.model";
-import { CreateQuestionsParams, GetQuestionById } from "./shared.types";
+import {
+  CreateQuestionsParams,
+  GetQuestionById,
+  UpvoteQuestionParams,
+} from "./shared.types";
 import Tag from "@/database/tags.model";
 import { revalidatePath } from "next/cache";
 import User from "@/database/users.model";
@@ -73,6 +77,33 @@ export const getQuestionById = async (params: GetQuestionById) => {
         select: "_id name clerkId picture",
       });
     return question;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+// upvote questions
+/* we create a function that takes user Id as params and then we find the question by id and push the userId as
+an object to the question model in the upvote field. We need to get the user Id of the user who is clicking the the upvote button,
+hence the user should be authenticated.
+ */
+
+export const upvoteQuestion = async (params: UpvoteQuestionParams) => {
+  try {
+    connectToDatabase();
+    const { userId, question } = params;
+    const existingQuestion = await Question.findById(question);
+
+    console.log(existingQuestion, "existing question");
+
+    const hasUpVoted = existingQuestion.upvotes.includes(userId);
+
+    if (!hasUpVoted) {
+      await Question.findByIdAndUpdate(question, {
+        $addToSet: { upvotes: userId },
+      });
+    }
   } catch (error) {
     console.log(error);
     throw error;
