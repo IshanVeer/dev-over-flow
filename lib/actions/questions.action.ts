@@ -4,7 +4,7 @@ import Question from "@/database/questions.model";
 import {
   CreateQuestionsParams,
   GetQuestionById,
-  UpvoteQuestionParams,
+  VoteQuestionParams,
 } from "./shared.types";
 import Tag from "@/database/tags.model";
 import { revalidatePath } from "next/cache";
@@ -89,39 +89,38 @@ an object to the question model in the upvote field. We need to get the user Id 
 hence the user should be authenticated.
  */
 
-export const upvoteQuestion = async (params: UpvoteQuestionParams) => {
+export const upvoteQuestion = async (params: VoteQuestionParams) => {
   try {
     connectToDatabase();
-    const { userId, question } = params;
-    const existingQuestion = await Question.findById(question);
+    const { userId, question, hasUpVoted, path } = params;
+    let updateQuery = {};
 
-    const hasUpVoted = existingQuestion.upvotes.includes(userId);
-
-    if (!hasUpVoted) {
-      await Question.findByIdAndUpdate(question, {
-        $addToSet: { upvotes: userId },
-      });
+    if (hasUpVoted) {
+      updateQuery = { $pull: { upvotes: userId } };
+    } else {
+      updateQuery = { $addToSet: { upvotes: userId } };
     }
+    await Question.findByIdAndUpdate(question, updateQuery, { new: true });
+    revalidatePath(path);
   } catch (error) {
     console.log(error);
     throw error;
   }
 };
 
-export const downvoteQuestion = async (params: UpvoteQuestionParams) => {
+export const downvoteQuestion = async (params: VoteQuestionParams) => {
   try {
     connectToDatabase();
-    const { userId, question } = params;
-    const existingQuestion = await Question.findById(question);
-    console.log(existingQuestion, "down vote existing question");
+    const { userId, question, hasDownVoted, path } = params;
+    let updateQuery = {};
 
-    const hasDownVoted = existingQuestion.downvotes.includes(userId);
-
-    if (!hasDownVoted) {
-      await Question.findByIdAndUpdate(question, {
-        $addToSet: { downvotes: userId },
-      });
+    if (hasDownVoted) {
+      updateQuery = { $pull: { downvotes: userId } };
+    } else {
+      updateQuery = { $addToSet: { downvotes: userId } };
     }
+    await Question.findByIdAndUpdate(question, updateQuery, { new: true });
+    revalidatePath(path);
   } catch (error) {
     console.log(error);
     throw error;

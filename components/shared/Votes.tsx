@@ -6,6 +6,7 @@ import {
   downvoteQuestion,
   upvoteQuestion,
 } from "@/lib/actions/questions.action";
+import { usePathname } from "next/navigation";
 
 interface Props {
   showSaveButton?: boolean;
@@ -26,12 +27,23 @@ const Votes = ({
   hasDownVoted,
   hasUpVoted,
 }: Props) => {
+  const pathname = usePathname();
   const upvoteButtonhandler = () => {
-    upvoteQuestion({ userId, question: JSON.parse(questionId) });
+    upvoteQuestion({
+      userId,
+      question: JSON.parse(questionId),
+      hasUpVoted,
+      path: pathname,
+    });
   };
   const downvoteButtonHandler = () => {
     console.log("clicking down vote");
-    downvoteQuestion({ userId, question: JSON.parse(questionId) });
+    downvoteQuestion({
+      userId,
+      question: JSON.parse(questionId),
+      hasDownVoted,
+      path: pathname,
+    });
   };
 
   return (

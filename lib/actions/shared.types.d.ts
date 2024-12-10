@@ -39,9 +39,12 @@ export interface GetQuestionById {
   questionId: string;
 }
 
-export interface UpvoteQuestionParams {
+export interface VoteQuestionParams {
   userId: string;
   question: string;
+  hasDownVoted?: boolean;
+  hasUpVoted?: boolean;
+  path: string;
 }
 
 // answer params
