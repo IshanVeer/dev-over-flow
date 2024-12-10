@@ -22,6 +22,8 @@ const QuestionDetail = async ({ params }: any) => {
   const totalAnswers = question.answers.length;
   const upvotes = formatAndDivide(question.upvotes.length);
   const downvotes = formatAndDivide(question.downvotes.length);
+  const hasUpVoted = question.upvotes.includes(mongoUser?._id);
+  const hasDownVoted = question.downvotes.includes(mongoUser?._id);
 
   return (
     <div>
@@ -46,6 +48,8 @@ const QuestionDetail = async ({ params }: any) => {
           questionId={JSON.stringify(question._id)}
           upvotes={upvotes}
           downvotes={downvotes}
+          hasUpVoted={hasUpVoted}
+          hasDownVoted={hasDownVoted}
         />
       </div>
       <h3 className="h2-semibold text-dark200_light900 capitalize">
@@ -62,7 +66,7 @@ const QuestionDetail = async ({ params }: any) => {
         <UserMetrics
           imgURL="/assets/icons/like.svg"
           alt="upvote"
-          value={formatAndDivide(question.upvotes)}
+          value={formatAndDivide(question.upvotes.length)}
           label=" Votes"
         />
         <UserMetrics

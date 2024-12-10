@@ -13,6 +13,8 @@ interface Props {
   questionId: string;
   upvotes: string;
   downvotes: string;
+  hasDownVoted: boolean;
+  hasUpVoted: boolean;
 }
 
 const Votes = ({
@@ -21,6 +23,8 @@ const Votes = ({
   questionId,
   upvotes,
   downvotes,
+  hasDownVoted,
+  hasUpVoted,
 }: Props) => {
   const upvoteButtonhandler = () => {
     upvoteQuestion({ userId, question: JSON.parse(questionId) });
@@ -36,7 +40,11 @@ const Votes = ({
       <div className="flex items-center">
         <Button className="p-2" onClick={upvoteButtonhandler}>
           <Image
-            src="/assets/icons/upvote.svg"
+            src={
+              hasUpVoted
+                ? "/assets/icons/upvoted.svg"
+                : "/assets/icons/upvote.svg"
+            }
             width={18}
             height={18}
             alt="upvote"
@@ -50,7 +58,11 @@ const Votes = ({
       <div className="flex items-center">
         <Button className="p-2" onClick={downvoteButtonHandler}>
           <Image
-            src="/assets/icons/downvote.svg"
+            src={
+              hasDownVoted
+                ? "/assets/icons/downvoted.svg"
+                : "/assets/icons/downvote.svg"
+            }
             width={18}
             height={18}
             alt="downvote"
