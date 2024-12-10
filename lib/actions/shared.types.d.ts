@@ -19,6 +19,12 @@ export interface UpdateUserParams {
 export interface DeleteUserParams {
   clerkId: string;
 }
+export interface SaveQuestionparams {
+  user: string;
+  questionId: string;
+  path: string;
+  hasSaved: boolean;
+}
 
 // Question Params
 export interface CreateQuestionsParams {

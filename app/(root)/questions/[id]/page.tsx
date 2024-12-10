@@ -24,6 +24,7 @@ const QuestionDetail = async ({ params }: any) => {
   const downvotes = formatAndDivide(question.downvotes.length);
   const hasUpVoted = question.upvotes.includes(mongoUser?._id);
   const hasDownVoted = question.downvotes.includes(mongoUser?._id);
+  const hasSaved = mongoUser.saved.includes(question._id);
 
   return (
     <div>
@@ -50,6 +51,7 @@ const QuestionDetail = async ({ params }: any) => {
           downvotes={downvotes}
           hasUpVoted={hasUpVoted}
           hasDownVoted={hasDownVoted}
+          hasSaved={hasSaved}
         />
       </div>
       <h3 className="h2-semibold text-dark200_light900 capitalize">

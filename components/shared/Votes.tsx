@@ -7,6 +7,7 @@ import {
   upvoteQuestion,
 } from "@/lib/actions/questions.action";
 import { usePathname } from "next/navigation";
+import { saveQuestionsInUser } from "@/lib/actions/users.action";
 
 interface Props {
   showSaveButton?: boolean;
@@ -16,6 +17,7 @@ interface Props {
   downvotes: string;
   hasDownVoted: boolean;
   hasUpVoted: boolean;
+  hasSaved: boolean;
 }
 
 const Votes = ({
@@ -26,6 +28,7 @@ const Votes = ({
   downvotes,
   hasDownVoted,
   hasUpVoted,
+  hasSaved,
 }: Props) => {
   const pathname = usePathname();
   const upvoteButtonhandler = () => {
@@ -37,12 +40,19 @@ const Votes = ({
     });
   };
   const downvoteButtonHandler = () => {
-    console.log("clicking down vote");
     downvoteQuestion({
       userId,
       question: JSON.parse(questionId),
       hasDownVoted,
       path: pathname,
+    });
+  };
+  const saveButtonHandler = () => {
+    saveQuestionsInUser({
+      user: userId,
+      questionId: JSON.parse(questionId),
+      path: pathname,
+      hasSaved,
     });
   };
 
@@ -86,9 +96,13 @@ const Votes = ({
       </div>
       {/* Save */}
       {showSaveButton && (
-        <Button className="p-2">
+        <Button className="p-2" onClick={saveButtonHandler}>
           <Image
-            src="/assets/icons/star-red.svg"
+            src={
+              hasSaved
+                ? "/assets/icons/star-filled.svg"
+                : "/assets/icons/star-red.svg"
+            }
             width={20}
             height={20}
             alt="save"

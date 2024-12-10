@@ -5,6 +5,7 @@ import {
   CreateUserParams,
   DeleteUserParams,
   GetAllUsersParams,
+  SaveQuestionparams,
   UpdateUserParams,
 } from "./shared.types";
 import { revalidatePath } from "next/cache";
@@ -90,4 +91,27 @@ export const getAllUsers = async (params: GetAllUsersParams) => {
     console.log(error);
     throw error;
   }
+};
+
+// Save question in user document
+/*We need question id from params and take that and push that to user document. We check if the user
+has already saved the question or not, if he has already saved the question and re clicks on the button the ques
+is unsaved and vis-a-vis. We check isSaved value and either $pull the value for saved or addToSet  */
+
+export const saveQuestionsInUser = async (params: SaveQuestionparams) => {
+  try {
+    connectToDatabase();
+    let updateQuery = {};
+    const { questionId, path, hasSaved, user } = params;
+
+    if (hasSaved) {
+      updateQuery = { $pull: { saved: questionId } };
+    } else {
+      updateQuery = { $addToSet: { saved: questionId } };
+    }
+
+    await User.findByIdAndUpdate(user, updateQuery);
+
+    revalidatePath(path);
+  } catch (error) {}
 };
