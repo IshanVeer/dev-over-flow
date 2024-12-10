@@ -95,13 +95,31 @@ export const upvoteQuestion = async (params: UpvoteQuestionParams) => {
     const { userId, question } = params;
     const existingQuestion = await Question.findById(question);
 
-    console.log(existingQuestion, "existing question");
-
     const hasUpVoted = existingQuestion.upvotes.includes(userId);
 
     if (!hasUpVoted) {
       await Question.findByIdAndUpdate(question, {
         $addToSet: { upvotes: userId },
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const downvoteQuestion = async (params: UpvoteQuestionParams) => {
+  try {
+    connectToDatabase();
+    const { userId, question } = params;
+    const existingQuestion = await Question.findById(question);
+    console.log(existingQuestion, "down vote existing question");
+
+    const hasDownVoted = existingQuestion.downvotes.includes(userId);
+
+    if (!hasDownVoted) {
+      await Question.findByIdAndUpdate(question, {
+        $addToSet: { downvotes: userId },
       });
     }
   } catch (error) {

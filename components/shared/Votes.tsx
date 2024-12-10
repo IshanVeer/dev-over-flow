@@ -2,18 +2,32 @@
 import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import { upvoteQuestion } from "@/lib/actions/questions.action";
+import {
+  downvoteQuestion,
+  upvoteQuestion,
+} from "@/lib/actions/questions.action";
 
 interface Props {
   showSaveButton?: boolean;
   userId: string;
   questionId: string;
   upvotes: string;
+  downvotes: string;
 }
 
-const Votes = ({ showSaveButton, userId, questionId, upvotes }: Props) => {
+const Votes = ({
+  showSaveButton,
+  userId,
+  questionId,
+  upvotes,
+  downvotes,
+}: Props) => {
   const upvoteButtonhandler = () => {
     upvoteQuestion({ userId, question: JSON.parse(questionId) });
+  };
+  const downvoteButtonHandler = () => {
+    console.log("clicking down vote");
+    downvoteQuestion({ userId, question: JSON.parse(questionId) });
   };
 
   return (
@@ -34,7 +48,7 @@ const Votes = ({ showSaveButton, userId, questionId, upvotes }: Props) => {
       </div>
       {/* downvote */}
       <div className="flex items-center">
-        <Button className="p-2">
+        <Button className="p-2" onClick={downvoteButtonHandler}>
           <Image
             src="/assets/icons/downvote.svg"
             width={18}
@@ -43,7 +57,7 @@ const Votes = ({ showSaveButton, userId, questionId, upvotes }: Props) => {
           />
         </Button>
         <div className="subtle-medium background-light700_dark300 text-dark100_light900 rounded-sm px-1.5 py-1 ">
-          {0}
+          {downvotes}
         </div>
       </div>
       {/* Save */}

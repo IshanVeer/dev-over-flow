@@ -21,6 +21,7 @@ const QuestionDetail = async ({ params }: any) => {
   const mongoUser = await getUserById({ userId });
   const totalAnswers = question.answers.length;
   const upvotes = question.upvotes.length;
+  const downvotes = question.downvotes.length;
 
   return (
     <div>
@@ -44,6 +45,7 @@ const QuestionDetail = async ({ params }: any) => {
           userId={mongoUser.id}
           questionId={JSON.stringify(question._id)}
           upvotes={upvotes}
+          downvotes={downvotes}
         />
       </div>
       <h3 className="h2-semibold text-dark200_light900 capitalize">
