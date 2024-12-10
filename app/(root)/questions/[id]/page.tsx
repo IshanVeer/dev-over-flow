@@ -20,8 +20,8 @@ const QuestionDetail = async ({ params }: any) => {
   const question = await getQuestionById({ questionId: id });
   const mongoUser = await getUserById({ userId });
   const totalAnswers = question.answers.length;
-  const upvotes = question.upvotes.length;
-  const downvotes = question.downvotes.length;
+  const upvotes = formatAndDivide(question.upvotes.length);
+  const downvotes = formatAndDivide(question.downvotes.length);
 
   return (
     <div>

@@ -19,7 +19,7 @@ interface question {
   title: string;
   tags: tag[];
   author: author;
-  upvotes: number;
+  upvotes: string;
   views: number;
   answers: any[];
   createdAt: Date;
@@ -65,7 +65,7 @@ const QuestionCard = ({ question }: QuestionProps) => {
           <UserMetrics
             imgURL="/assets/icons/like.svg"
             alt="upvote"
-            value={formatAndDivide(question.upvotes)}
+            value={formatAndDivide(question.upvotes.length)}
             label=" Votes"
           />
           <UserMetrics
