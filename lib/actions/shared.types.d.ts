@@ -64,4 +64,5 @@ export interface VoteParams {
   hasDownVoted?: boolean;
   hasUpVoted?: boolean;
   path: string;
+  hasSaved?: boolean;
 }

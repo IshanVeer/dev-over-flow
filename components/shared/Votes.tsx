@@ -12,45 +12,51 @@ import { saveQuestionsInUser } from "@/lib/actions/users.action";
 interface Props {
   showSaveButton?: boolean;
   userId: string;
-  questionId: string;
+  itemId: string;
   upvotes: string;
   downvotes: string;
   hasDownVoted: boolean;
   hasUpVoted: boolean;
-  hasSaved: boolean;
+  hasSaved?: boolean;
+  type: string;
 }
 
 const Votes = ({
   showSaveButton,
   userId,
-  questionId,
+  itemId,
   upvotes,
   downvotes,
   hasDownVoted,
   hasUpVoted,
   hasSaved,
+  type,
 }: Props) => {
   const pathname = usePathname();
-  const upvoteButtonhandler = () => {
-    upvoteQuestion({
-      userId,
-      question: JSON.parse(questionId),
-      hasUpVoted,
-      path: pathname,
-    });
-  };
-  const downvoteButtonHandler = () => {
-    downvoteQuestion({
-      userId,
-      question: JSON.parse(questionId),
-      hasDownVoted,
-      path: pathname,
-    });
+
+  const voteButtonHandler = (action: string) => {
+    if (type === "Question") {
+      if (action === "upvote") {
+        upvoteQuestion({
+          userId,
+          question: JSON.parse(itemId),
+          hasUpVoted,
+          path: pathname,
+        });
+      } else if (action === "downvote") {
+        downvoteQuestion({
+          userId,
+          question: JSON.parse(itemId),
+          hasDownVoted,
+          path: pathname,
+        });
+      }
+    }
   };
   const saveButtonHandler = () => {
     saveQuestionsInUser({
       user: userId,
-      questionId: JSON.parse(questionId),
+      questionId: JSON.parse(itemId),
       path: pathname,
       hasSaved,
     });
@@ -60,7 +66,7 @@ const Votes = ({
     <div className="flex gap-1.5">
       {/* upvote */}
       <div className="flex items-center">
-        <Button className="p-2" onClick={upvoteButtonhandler}>
+        <Button className="p-2" onClick={() => voteButtonHandler("upvote")}>
           <Image
             src={
               hasUpVoted
@@ -78,7 +84,7 @@ const Votes = ({
       </div>
       {/* downvote */}
       <div className="flex items-center">
-        <Button className="p-2" onClick={downvoteButtonHandler}>
+        <Button className="p-2" onClick={() => voteButtonHandler("downvote")}>
           <Image
             src={
               hasDownVoted
