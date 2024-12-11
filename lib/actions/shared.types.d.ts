@@ -23,7 +23,7 @@ export interface SaveQuestionparams {
   user: string;
   questionId: string;
   path: string;
-  hasSaved: boolean;
+  hasSaved?: boolean;
 }
 
 // Question Params
@@ -45,14 +45,6 @@ export interface GetQuestionById {
   questionId: string;
 }
 
-export interface VoteQuestionParams {
-  userId: string;
-  question: string;
-  hasDownVoted?: boolean;
-  hasUpVoted?: boolean;
-  path: string;
-}
-
 // answer params
 export interface CreateAnswersParams {
   content: string;
@@ -63,4 +55,13 @@ export interface CreateAnswersParams {
 
 export interface GetAnswersParams {
   questionId: string;
+}
+// Shared
+export interface VoteParams {
+  userId: string;
+  question?: string;
+  answer?: string;
+  hasDownVoted?: boolean;
+  hasUpVoted?: boolean;
+  path: string;
 }

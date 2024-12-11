@@ -4,7 +4,7 @@ import Question from "@/database/questions.model";
 import {
   CreateQuestionsParams,
   GetQuestionById,
-  VoteQuestionParams,
+  VoteParams,
 } from "./shared.types";
 import Tag from "@/database/tags.model";
 import { revalidatePath } from "next/cache";
@@ -89,7 +89,7 @@ an object to the question model in the upvote field. We need to get the user Id 
 hence the user should be authenticated.
  */
 
-export const upvoteQuestion = async (params: VoteQuestionParams) => {
+export const upvoteQuestion = async (params: VoteParams) => {
   try {
     connectToDatabase();
     const { userId, question, hasUpVoted, path } = params;
@@ -108,7 +108,7 @@ export const upvoteQuestion = async (params: VoteQuestionParams) => {
   }
 };
 
-export const downvoteQuestion = async (params: VoteQuestionParams) => {
+export const downvoteQuestion = async (params: VoteParams) => {
   try {
     connectToDatabase();
     const { userId, question, hasDownVoted, path } = params;
