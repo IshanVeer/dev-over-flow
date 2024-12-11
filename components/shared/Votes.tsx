@@ -8,6 +8,7 @@ import {
 } from "@/lib/actions/questions.action";
 import { usePathname } from "next/navigation";
 import { saveQuestionsInUser } from "@/lib/actions/users.action";
+import { upvoteAnswer, downvoteAnswer } from "@/lib/actions/answer.action";
 
 interface Props {
   showSaveButton?: boolean;
@@ -47,6 +48,23 @@ const Votes = ({
         downvoteQuestion({
           userId,
           question: JSON.parse(itemId),
+          hasDownVoted,
+          path: pathname,
+        });
+      }
+    }
+    if (type === "Answer") {
+      if (action === "upvote") {
+        upvoteAnswer({
+          userId,
+          answer: JSON.parse(itemId),
+          hasUpVoted,
+          path: pathname,
+        });
+      } else if (action === "downvote") {
+        downvoteAnswer({
+          userId,
+          answer: JSON.parse(itemId),
           hasDownVoted,
           path: pathname,
         });

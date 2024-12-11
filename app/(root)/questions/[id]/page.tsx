@@ -46,7 +46,7 @@ const QuestionDetail = async ({ params }: any) => {
         {/* Upvote / downvote / save */}
         <Votes
           showSaveButton={true}
-          userId={mongoUser.id}
+          userId={mongoUser._id}
           itemId={JSON.stringify(question._id)}
           upvotes={upvotes}
           downvotes={downvotes}
@@ -106,7 +106,7 @@ const QuestionDetail = async ({ params }: any) => {
         </div>
       </div>
       {/* All Answers */}
-      <AllAnswers questionId={question._id} />
+      <AllAnswers questionId={question._id} userId={mongoUser._id} />
       <AnswerForm
         author={JSON.stringify(mongoUser?._id)}
         questionId={JSON.stringify(question._id)}
