@@ -30,8 +30,6 @@ interface QuestionProps {
 }
 
 const QuestionCard = ({ question }: QuestionProps) => {
-  console.log(question, "question");
-
   return (
     <Card padding="px-12 py-8" margin="mb-6">
       <p className="small-regular text-dark200_light800 mb-3 sm:hidden">
