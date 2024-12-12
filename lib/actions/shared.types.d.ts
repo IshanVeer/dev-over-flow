@@ -25,6 +25,9 @@ export interface SaveQuestionparams {
   path: string;
   hasSaved?: boolean;
 }
+export interface GetSavedQuestionsParms {
+  clerkId?: string;
+}
 
 // Question Params
 export interface CreateQuestionsParams {

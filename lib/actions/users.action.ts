@@ -5,10 +5,13 @@ import {
   CreateUserParams,
   DeleteUserParams,
   GetAllUsersParams,
+  GetSavedQuestionsParms,
   SaveQuestionparams,
   UpdateUserParams,
 } from "./shared.types";
 import { revalidatePath } from "next/cache";
+
+import Tag from "@/database/tags.model";
 
 // Template action
 /* 
@@ -94,7 +97,7 @@ export const getAllUsers = async (params: GetAllUsersParams) => {
 };
 
 // Save question in user document
-/*We need question id from params and take that and push that to user document. We check if the user
+/* We need question id from params and take that and push that to user document. We check if the user
 has already saved the question or not, if he has already saved the question and re clicks on the button the ques
 is unsaved and vis-a-vis. We check isSaved value and either $pull the value for saved or addToSet  */
 
@@ -114,4 +117,30 @@ export const saveQuestionsInUser = async (params: SaveQuestionparams) => {
 
     revalidatePath(path);
   } catch (error) {}
+};
+
+// Get Saved questions
+
+export const getSavedQuestions = async (params: GetSavedQuestionsParms) => {
+  try {
+    connectToDatabase();
+    const { clerkId } = params;
+    console.log(clerkId, "clerk id");
+
+    const user = await User.findOne({ clerkId }).populate({
+      path: "saved",
+      options: { createdAt: -1 },
+      populate: [
+        { path: "tags", model: Tag },
+        { path: "author", model: User },
+      ],
+    });
+    console.log(user, "user");
+    const savedQuestions = user.saved;
+    console.log(savedQuestions, "server saved questions");
+    return { questions: savedQuestions };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };

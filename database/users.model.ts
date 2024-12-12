@@ -29,7 +29,7 @@ const UserSchema = new Schema({
   location: { type: String },
   portfolioWebsite: { type: String },
   reputations: { type: Number, default: 0 },
-  saved: [{ type: Schema.Types.ObjectId, ref: "Questions" }],
+  saved: [{ type: Schema.Types.ObjectId, ref: "Question" }],
   joinedAt: { type: Date, default: Date.now },
 });
 
