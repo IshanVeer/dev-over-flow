@@ -47,7 +47,7 @@ export const createQuestions = async (params: CreateQuestionsParams) => {
     for (const tag of tags) {
       const existingTag = await Tag.findOneAndUpdate(
         { name: { $regex: new RegExp(`^${tag}$`, "i") } }, // find the tag, regular expression is used to match the name of the tag
-        { $setOnInsert: { name: tag }, $push: { question: question._id } }, // sets name field only if a new document is created
+        { $setOnInsert: { name: tag }, $push: { questions: question._id } }, // sets name field only if a new document is created
         { upsert: true, new: true } // of no document matcheds the query, new document is created
       );
       tagsDocument.push(existingTag._id);

@@ -19,7 +19,6 @@ const QuestionDetail = async ({ params }: any) => {
 
   const question = await getQuestionById({ questionId: id });
   const mongoUser = await getUserById({ userId });
-  console.log(mongoUser._id, "user id");
   const totalAnswers = question.answers.length;
   const upvotes = formatAndDivide(question.upvotes.length);
   const downvotes = formatAndDivide(question.downvotes.length);
