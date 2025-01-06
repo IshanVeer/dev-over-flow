@@ -1,8 +1,6 @@
 import QuestionCard from "@/components/shared/cards/QuestionCard";
 import NoResult from "@/components/shared/NoResult";
-import RenderFilters from "@/components/shared/RenderFilters";
 import LocalSearch from "@/components/shared/search/LocalSearch";
-import { TagFilters } from "@/constants/filters";
 import { getMatchingTagsQuestions } from "@/lib/actions/tags.action";
 import React from "react";
 
@@ -19,6 +17,9 @@ const TagDetail = async ({ params }: any) => {
   return (
     <>
       <h1 className="h1-bold text-dark400_light900 uppercase">{name}</h1>
+      <div className="mt-8 flex items-center gap-8 max-sm:flex-col">
+        <LocalSearch placeholder="Search tag questions..." />
+      </div>
 
       {/* questions */}
       <div className="mt-8">
