@@ -18,13 +18,7 @@ const TagDetail = async ({ params }: any) => {
 
   return (
     <>
-      <h1 className="h1-bold text-dark400_light900">Tags</h1>
-      <div className="mt-8 flex items-center gap-8 max-sm:flex-col">
-        <LocalSearch placeholder="Search amazing minds here..." />
-        <div className="max-sm:w-full ">
-          <RenderFilters filters={TagFilters} />
-        </div>
-      </div>
+      <h1 className="h1-bold text-dark400_light900 uppercase">{name}</h1>
 
       {/* questions */}
       <div className="mt-8">
