@@ -59,6 +59,11 @@ export interface CreateAnswersParams {
 export interface GetAnswersParams {
   questionId: string;
 }
+
+// tag params
+export interface GetMatchingTagsQuestionParams {
+  name: string;
+}
 // Shared
 export interface VoteParams {
   userId: string;

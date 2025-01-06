@@ -102,7 +102,7 @@ const Votes = ({
       </div>
       {/* downvote */}
       <div className="flex items-center">
-        <Button className="p-2" onClick={() => voteButtonHandler("downvote")}>
+        <Button className=" p-2" onClick={() => voteButtonHandler("downvote")}>
           <Image
             src={
               hasDownVoted

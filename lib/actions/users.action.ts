@@ -129,7 +129,7 @@ export const getSavedQuestions = async (params: GetSavedQuestionsParms) => {
 
     const user = await User.findOne({ clerkId }).populate({
       path: "saved",
-      options: { createdAt: -1 },
+      options: { sort: { createdAt: -1 } },
       populate: [
         { path: "tags", model: Tag },
         { path: "author", model: User },
