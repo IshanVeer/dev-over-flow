@@ -11,6 +11,7 @@ interface tag {
 }
 interface author {
   _id: string;
+  clerkId: string;
   name: string;
   picture: string;
 }
@@ -30,6 +31,7 @@ interface QuestionProps {
 }
 
 const QuestionCard = ({ question }: QuestionProps) => {
+  console.log(question.author.clerkId, "question card author");
   return (
     <Card padding="px-12 py-8" margin="mb-6">
       <p className="small-regular text-dark200_light800 mb-3 sm:hidden">
@@ -55,7 +57,7 @@ const QuestionCard = ({ question }: QuestionProps) => {
           value={question.author.name}
           label={` - asked ${getTimestamp(question.createdAt)}`}
           isAuthor
-          href={`/profile/${question.author._id}`}
+          href={`/profile/${question.author.clerkId}`}
           customStyles="body-medium"
         />
         {/* stats */}

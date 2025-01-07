@@ -125,7 +125,6 @@ export const getSavedQuestions = async (params: GetSavedQuestionsParms) => {
   try {
     connectToDatabase();
     const { clerkId } = params;
-    console.log(clerkId, "clerk id");
 
     const user = await User.findOne({ clerkId }).populate({
       path: "saved",
@@ -135,9 +134,9 @@ export const getSavedQuestions = async (params: GetSavedQuestionsParms) => {
         { path: "author", model: User },
       ],
     });
-    console.log(user, "user");
+
     const savedQuestions = user.saved;
-    console.log(savedQuestions, "server saved questions");
+
     return { questions: savedQuestions };
   } catch (error) {
     console.log(error);
