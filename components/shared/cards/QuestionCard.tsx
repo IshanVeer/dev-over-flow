@@ -31,7 +31,6 @@ interface QuestionProps {
 }
 
 const QuestionCard = ({ question }: QuestionProps) => {
-  console.log(question.author.clerkId, "question card author");
   return (
     <Card padding="px-12 py-8" margin="mb-6">
       <p className="small-regular text-dark200_light800 mb-3 sm:hidden">
@@ -52,7 +51,7 @@ const QuestionCard = ({ question }: QuestionProps) => {
       <div className=" flex flex-wrap items-center justify-between ">
         {/* profile */}
         <UserMetrics
-          imgURL="/assets/icons/avatar.svg"
+          imgURL={question.author.picture}
           alt="user"
           value={question.author.name}
           label={` - asked ${getTimestamp(question.createdAt)}`}

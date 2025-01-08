@@ -29,6 +29,9 @@ export interface GetSavedQuestionsParms {
   clerkId?: string;
 }
 
+export interface GetUserInfoParams {
+  userId?: string;
+}
 // Question Params
 export interface CreateQuestionsParams {
   title: string;

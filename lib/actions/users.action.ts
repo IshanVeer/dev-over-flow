@@ -6,6 +6,7 @@ import {
   DeleteUserParams,
   GetAllUsersParams,
   GetSavedQuestionsParms,
+  GetUserInfoParams,
   SaveQuestionparams,
   UpdateUserParams,
 } from "./shared.types";
@@ -90,6 +91,21 @@ export const getAllUsers = async (params: GetAllUsersParams) => {
     const users = await User.find({}).sort({ createdAt: -1 });
 
     return { users };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+// Get user info
+/* We need to get all the data of the user, which includes, name, picture, joining date, number of questions,
+ number of answers, top tags - let's keep it top 10 tags interacted with, questions - questions with most interaction,
+ answers, gold/silver/bronze badges. */
+
+export const getUserInfo = (params: GetUserInfoParams) => {
+  try {
+    connectToDatabase();
+    const { userId } = params;
+    console.log(userId);
   } catch (error) {
     console.log(error);
     throw error;

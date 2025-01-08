@@ -24,7 +24,7 @@ const UserMetrics = ({
   const userMetricContent = (
     <>
       <Image
-        className="invert-colors"
+        className="invert-colors rounded-full"
         src={imgURL}
         alt={alt}
         width={14}
