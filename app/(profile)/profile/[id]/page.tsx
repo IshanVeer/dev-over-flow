@@ -1,24 +1,37 @@
+import { Button } from "@/components/ui/button";
+import { getUserInfo } from "@/lib/actions/users.action";
+import { URLProps } from "@/types";
+import { SignedIn } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Profile = ({ params }: any) => {
+const Profile = async ({ params, searchParams }: URLProps) => {
+  const { userId } = auth();
+
   const { id } = params;
-  console.log(id, "user id");
+
+  /* we get the id from the route and then pass the id to our server action to get the 
+  user info.
+  */
+  const result = await getUserInfo({ userId: id });
+  console.log(result, "user info result");
   return (
     <>
       {/* user info */}
-      <div className="flex items-start">
+      <div className="mb-10 flex items-start gap-2">
         <Image
-          src="/assets/icons/avatar.svg"
+          src={result.user.picture}
           alt="profile picture"
-          height={140}
-          width={140}
+          height={150}
+          width={150}
           className="invert-colors rounded-full"
         />
-        <div className="flex flex-col">
-          <h2 className="h1-bold text-dark400_light900">Ishan veer</h2>
-          <p className="paragraph-regular text-dark400_light900">@ishanveer</p>
+        <div className="mt-4 flex flex-col">
+          <h2 className="h1-bold text-dark400_light900">{result.user.name}</h2>
+          <p className="paragraph-regular text-dark400_light900">{`@${result.user.username}`}</p>
           <div className="my-3 flex gap-4">
             <div className="paragraph-medium flex items-center gap-1">
               <Image
@@ -28,7 +41,7 @@ const Profile = ({ params }: any) => {
                 width={20}
               />
               <Link className="text-sky-500" href="/">
-                ishanveer.com
+                {result.user.email}
               </Link>
             </div>
 
@@ -48,7 +61,7 @@ const Profile = ({ params }: any) => {
                 width={20}
                 alt="date of joining"
               />
-              Joined May 13
+              {`Joined ${new Date(result.user.joinedAt).toLocaleString("default", { month: "long" })} ${result.user.joinedAt.getFullYear()}`}
             </div>
           </div>
           <div className="w-3/4">
@@ -60,9 +73,60 @@ const Profile = ({ params }: any) => {
             </p>
           </div>
         </div>
+        <SignedIn>
+          {userId === result.user.clerkId && (
+            <Link href="/profile/edit">
+              <Button className="background-light700_dark400 text-dark200_light800 ">
+                Edit Profile
+              </Button>
+            </Link>
+          )}
+        </SignedIn>
       </div>
       {/* user stats */}
-      <div></div>
+      <h2 className="h3-semibold my-5">Stats</h2>
+      <div className="light-border  flex items-center justify-between">
+        <div className="flex items-center justify-between gap-8 rounded-lg bg-white px-10 py-7 shadow-sm ">
+          <div className="flex flex-col items-center">
+            <p className="body-semibold">{result.totalQuestions}</p>{" "}
+            <p>Questions</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <p className="body-semibold">{result.totalAnswers}</p>{" "}
+            <p>Answers</p>
+          </div>
+        </div>
+        <div className="light-border  flex items-center justify-between gap-8 rounded-lg bg-white px-10 py-7 shadow-sm">
+          <div className="flex flex-col items-center">
+            <p className="body-semibold">{result.totalQuestions}</p>{" "}
+            <p>Questions</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <p className="body-semibold">{result.totalAnswers}</p>{" "}
+            <p>Answers</p>
+          </div>
+        </div>
+        <div className="light-border  flex items-center justify-between gap-8  rounded-lg bg-white px-10 py-7 shadow-sm ">
+          <div className="flex flex-col items-center">
+            <p className="body-semibold">{result.totalQuestions}</p>{" "}
+            <p>Questions</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <p className="body-semibold">{result.totalAnswers}</p>{" "}
+            <p>Answers</p>
+          </div>
+        </div>
+        <div className="light-border  flex items-center justify-between gap-8 rounded-lg bg-white px-10 py-7 shadow-sm ">
+          <div className="flex flex-col items-center">
+            <p className="body-semibold">{result.totalQuestions}</p>{" "}
+            <p>Questions</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <p className="body-semibold">{result.totalAnswers}</p>{" "}
+            <p>Answers</p>
+          </div>
+        </div>
+      </div>
 
       <div>
         {/* top posts */}

@@ -13,6 +13,8 @@ import {
 import { revalidatePath } from "next/cache";
 
 import Tag from "@/database/tags.model";
+import Question from "@/database/questions.model";
+import Answer from "@/database/answers.model";
 
 // Template action
 /* 
@@ -101,11 +103,16 @@ export const getAllUsers = async (params: GetAllUsersParams) => {
  number of answers, top tags - let's keep it top 10 tags interacted with, questions - questions with most interaction,
  answers, gold/silver/bronze badges. */
 
-export const getUserInfo = (params: GetUserInfoParams) => {
+export const getUserInfo = async (params: GetUserInfoParams) => {
   try {
     connectToDatabase();
     const { userId } = params;
-    console.log(userId);
+    console.log(userId, "profile action");
+    const user = await User.findOne({ clerkId: userId });
+    const totalQuestions = await Question.countDocuments({ author: user._id });
+    const totalAnswers = await Answer.countDocuments({ author: user._id });
+
+    return { user, totalAnswers, totalQuestions };
   } catch (error) {
     console.log(error);
     throw error;
