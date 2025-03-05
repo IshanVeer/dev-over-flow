@@ -16,6 +16,7 @@ const LeftSidebar = () => {
     <section className="background-light900_dark200 light-border custom-scrollbar sticky  left-0  top-0 flex  h-screen flex-col  justify-between overflow-y-auto  border-r p-6  pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px] ">
       <div className="flex flex-1 flex-col gap-6">
         {sidebarLinks.map((link) => {
+          const isProfileLinkActive = pathname === `/profile/${userId}`;
           const isActive =
             (pathname.includes(link.route) && link.route.length > 1) ||
             pathname === link.route;
@@ -26,17 +27,17 @@ const LeftSidebar = () => {
                 <Link
                   href={`${link.route}/${userId}`}
                   key={link.route}
-                  className={`${isActive ? "primary-gradient rounded-lg text-light-900" : "text-dark300_light900"} flex items-center justify-start gap-4 bg-transparent p-4 transition duration-150 hover:rounded-lg hover:bg-primary-100 dark:hover:bg-dark-400`}
+                  className={`${isProfileLinkActive ? "primary-gradient rounded-lg text-light-900" : "text-dark300_light900"} flex items-center justify-start gap-4 bg-transparent p-4 transition duration-150 hover:rounded-lg hover:bg-primary-100 dark:hover:bg-dark-400`}
                 >
                   <Image
                     src={link.imgURL}
                     alt={link.label}
                     width={23}
                     height={23}
-                    className={`${isActive ? "" : "invert-colors"} `}
+                    className={`${isProfileLinkActive ? "" : "invert-colors"} `}
                   />
                   <p
-                    className={`${isActive ? "base-bold" : "base-medium"} max-lg:hidden`}
+                    className={`${isProfileLinkActive ? "base-bold" : "base-medium"} max-lg:hidden`}
                   >
                     {link.label}
                   </p>
