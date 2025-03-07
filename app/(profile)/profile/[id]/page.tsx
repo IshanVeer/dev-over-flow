@@ -3,6 +3,7 @@ import { getUserInfo } from "@/lib/actions/users.action";
 import { URLProps } from "@/types";
 import { SignedIn } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -85,7 +86,7 @@ const Profile = async ({ params, searchParams }: URLProps) => {
       </div>
       {/* user stats */}
       <h2 className="h3-semibold my-5">Stats</h2>
-      <div className="light-border  flex items-center justify-between">
+      {/* <div className="light-border  flex items-center justify-between">
         <div className="flex items-center justify-between gap-8 rounded-lg bg-white px-10 py-7 shadow-sm ">
           <div className="flex flex-col items-center">
             <p className="body-semibold">{result.totalQuestions}</p>{" "}
@@ -126,9 +127,28 @@ const Profile = async ({ params, searchParams }: URLProps) => {
             <p>Answers</p>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div>
+        <Tabs defaultValue="questions">
+          <TabsList className="background-light800_dark400 text-light400_light500">
+            <TabsTrigger
+              value="questions"
+              className="data-[state=active]:background-primary200_dark300 data-[state=active]:text-primary-500 "
+            >
+              Top Posts
+            </TabsTrigger>
+            <TabsTrigger
+              value="answers"
+              className="data-[state=active]:background-primary200_dark300 data-[state=active]:text-primary-500"
+            >
+              Answers
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="questions">Posts</TabsContent>
+          <TabsContent value="answers">Answers</TabsContent>
+        </Tabs>
+
         {/* top posts */}
         {/* top tags */}
       </div>
