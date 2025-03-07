@@ -32,6 +32,9 @@ export interface GetSavedQuestionsParms {
 export interface GetUserInfoParams {
   userId?: string;
 }
+export interface GetUserQuestionsParams {
+  userId?: string;
+}
 // Question Params
 export interface CreateQuestionsParams {
   title: string;

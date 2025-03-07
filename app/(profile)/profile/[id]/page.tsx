@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Stats from "@/components/shared/Stats";
+import UserQuestions from "@/components/shared/UserQuestions";
 
 const Profile = async ({ params, searchParams }: URLProps) => {
   const { userId } = auth();
@@ -19,7 +20,7 @@ const Profile = async ({ params, searchParams }: URLProps) => {
   user info.
   */
   const result = await getUserInfo({ userId: id });
-  console.log(result, "user info result");
+
   return (
     <>
       {/* user info */}
@@ -80,9 +81,9 @@ const Profile = async ({ params, searchParams }: URLProps) => {
       <h2 className="h3-semibold my-5">Stats</h2>
       <Stats userInfo={result} />
 
-      <div>
+      <div className="my-8">
         <Tabs defaultValue="questions">
-          <TabsList className="background-light800_dark400 text-light400_light500">
+          <TabsList className="background-light800_dark400 text-light400_light500 mb-6">
             <TabsTrigger
               value="questions"
               className="data-[state=active]:background-primary200_dark300 data-[state=active]:text-primary-500 "
@@ -96,11 +97,14 @@ const Profile = async ({ params, searchParams }: URLProps) => {
               Answers
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="questions">Posts</TabsContent>
+          {/* top questions */}
+          <TabsContent value="questions">
+            <UserQuestions userId={id} />
+          </TabsContent>
+          {/* top answers */}
           <TabsContent value="answers">Answers</TabsContent>
         </Tabs>
 
-        {/* top posts */}
         {/* top tags */}
       </div>
     </>
