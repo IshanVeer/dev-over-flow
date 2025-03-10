@@ -32,7 +32,7 @@ export interface GetSavedQuestionsParms {
 export interface GetUserInfoParams {
   userId?: string;
 }
-export interface GetUserQuestionsParams {
+export interface GetUserPostsParams {
   userId?: string;
 }
 // Question Params

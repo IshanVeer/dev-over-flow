@@ -7,7 +7,7 @@ import {
   GetAllUsersParams,
   GetSavedQuestionsParms,
   GetUserInfoParams,
-  GetUserQuestionsParams,
+  GetUserPostsParams,
   SaveQuestionparams,
   UpdateUserParams,
 } from "./shared.types";
@@ -172,18 +172,37 @@ export const getSavedQuestions = async (params: GetSavedQuestionsParms) => {
 question author of that question with the user id and then populate that question in the query and that question
 will be returned.  */
 
-export const getUserQuestions = async ({ userId }: GetUserQuestionsParams) => {
+export const getUserQuestions = async ({ userId }: GetUserPostsParams) => {
   try {
     connectToDatabase();
-    console.log(userId, "questions author");
+
     const user = await User.findOne({ clerkId: userId });
-    console.log(user, "user to get questions");
+
     const questions = await Question.find({ author: user._id })
       .populate({ path: "tags", model: Tag })
       .populate({ path: "author", model: User })
       .sort({ createdAt: -1 });
-    console.log(questions, " user questions");
+
     return { questions };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+// Get all user answers
+
+export const getUserAnswers = async ({ userId }: GetUserPostsParams) => {
+  try {
+    connectToDatabase();
+    const user = await User.findOne({ clerkId: userId });
+    const answers = await Answer.find({ author: user._id })
+      .populate({ path: "question", model: Question })
+      .populate({ path: "author", model: User })
+      .sort({ createdAt: -1 });
+
+    console.log(answers, " user answers");
+    return { answers };
   } catch (error) {
     console.log(error);
     throw error;

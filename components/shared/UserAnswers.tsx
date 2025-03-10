@@ -1,20 +1,19 @@
-import { getUserQuestions } from "@/lib/actions/users.action";
+import { getUserAnswers } from "@/lib/actions/users.action";
 import React from "react";
-import QuestionCard from "./cards/QuestionCard";
+import AnswerCard from "./cards/AnswerCard";
 import NoResult from "./NoResult";
 
 interface Props {
   userId: string;
 }
-
-const UserQuestions = async ({ userId }: Props) => {
-  const questionsResult = await getUserQuestions({ userId });
-
+const UserAnswers = async ({ userId }: Props) => {
+  const answersResult = await getUserAnswers({ userId });
+  console.log(answersResult, "answers in frontend");
   return (
     <div>
-      {questionsResult.questions.length > 0 ? (
-        questionsResult.questions.map((question) => (
-          <QuestionCard key={question._id} question={question} />
+      {answersResult.answers.length > 0 ? (
+        answersResult.answers.map((answer) => (
+          <AnswerCard key={answer._id} answer={answer} />
         ))
       ) : (
         <NoResult
@@ -27,4 +26,4 @@ const UserQuestions = async ({ userId }: Props) => {
   );
 };
 
-export default UserQuestions;
+export default UserAnswers;

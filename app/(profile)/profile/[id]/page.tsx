@@ -10,6 +10,7 @@ import Link from "next/link";
 import React from "react";
 import Stats from "@/components/shared/Stats";
 import UserQuestions from "@/components/shared/UserQuestions";
+import UserAnswers from "@/components/shared/UserAnswers";
 
 const Profile = async ({ params, searchParams }: URLProps) => {
   const { userId } = auth();
@@ -102,7 +103,9 @@ const Profile = async ({ params, searchParams }: URLProps) => {
             <UserQuestions userId={id} />
           </TabsContent>
           {/* top answers */}
-          <TabsContent value="answers">Answers</TabsContent>
+          <TabsContent value="answers">
+            <UserAnswers userId={id} />
+          </TabsContent>
         </Tabs>
 
         {/* top tags */}
