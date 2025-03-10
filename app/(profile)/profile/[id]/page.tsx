@@ -17,6 +17,8 @@ const Profile = async ({ params, searchParams }: URLProps) => {
 
   const { id } = params;
 
+  const userLoggedIn = userId === id;
+
   /* we get the id from the route and then pass the id to our server action to get the 
   user info.
   */
@@ -99,8 +101,11 @@ const Profile = async ({ params, searchParams }: URLProps) => {
             </TabsTrigger>
           </TabsList>
           {/* top questions */}
+          {/* The question card need update + delete button, which are showed only on the question cards which 
+          are on profile page that too if the user is logged in and is looking at his own profile, so we need pass
+          prop where clerkId === /:id */}
           <TabsContent value="questions">
-            <UserQuestions userId={id} />
+            <UserQuestions userLoggedIn={userLoggedIn} userId={id} />
           </TabsContent>
           {/* top answers */}
           <TabsContent value="answers">

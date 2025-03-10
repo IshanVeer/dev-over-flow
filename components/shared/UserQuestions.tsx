@@ -5,16 +5,22 @@ import NoResult from "./NoResult";
 
 interface Props {
   userId: string;
+  userLoggedIn: boolean;
 }
 
-const UserQuestions = async ({ userId }: Props) => {
+const UserQuestions = async ({ userId, userLoggedIn }: Props) => {
   const questionsResult = await getUserQuestions({ userId, page: 1 });
 
   return (
     <div>
       {questionsResult.questions.length > 0 ? (
         questionsResult.questions.map((question) => (
-          <QuestionCard key={question._id} question={question} />
+          <QuestionCard
+            userLoggedIn={userLoggedIn}
+            showUpdateButton={true}
+            key={question._id}
+            question={question}
+          />
         ))
       ) : (
         <NoResult

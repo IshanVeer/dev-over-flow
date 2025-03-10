@@ -62,6 +62,9 @@ export const createQuestions = async (params: CreateQuestionsParams) => {
     console.log(error);
   }
 };
+// update question
+
+// delete question
 
 // Get question by Id
 

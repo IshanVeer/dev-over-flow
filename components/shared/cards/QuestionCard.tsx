@@ -4,6 +4,8 @@ import Card from "@/components/ui/Card";
 import Link from "next/link";
 import UserMetrics from "../UserMetrics";
 import { formatAndDivide, getTimestamp } from "@/lib/utils";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 interface tag {
   _id: string;
@@ -28,20 +30,48 @@ interface question {
 
 interface QuestionProps {
   question: question;
+  userLoggedIn: boolean;
+  showUpdateButton: boolean;
 }
 
-const QuestionCard = ({ question }: QuestionProps) => {
+const QuestionCard = ({
+  question,
+  userLoggedIn,
+  showUpdateButton,
+}: QuestionProps) => {
   return (
     <Card padding="px-12 py-8 light-border border" margin="mb-6">
       <p className="small-regular text-dark200_light800 mb-3 sm:hidden">
         {getTimestamp(question.createdAt)}
       </p>
+      <div className="flex items-center justify-between">
+        <Link href={`/questions/${question._id}`}>
+          <h3 className="h3-semibold text-dark400_light900 mb-4 line-clamp-1 ">
+            {question.title}
+          </h3>
+        </Link>
+        {userLoggedIn && showUpdateButton ? (
+          <div className="flex items-center">
+            <Button className="p-2">
+              <Image
+                src="/assets/icons/edit.svg"
+                width={20}
+                height={20}
+                alt="edit"
+              />
+            </Button>
+            <Button className="p-2">
+              <Image
+                src="/assets/icons/trash.svg"
+                width={20}
+                height={20}
+                alt="delete"
+              />
+            </Button>
+          </div>
+        ) : null}
+      </div>
 
-      <Link href={`/questions/${question._id}`}>
-        <h3 className="h3-semibold text-dark400_light900 mb-4 line-clamp-1 ">
-          {question.title}
-        </h3>
-      </Link>
       {/* tags */}
       <div className="mb-4 flex flex-wrap gap-3">
         {question.tags.map((tag) => (
