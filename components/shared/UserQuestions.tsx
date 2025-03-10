@@ -8,7 +8,7 @@ interface Props {
 }
 
 const UserQuestions = async ({ userId }: Props) => {
-  const questionsResult = await getUserQuestions({ userId });
+  const questionsResult = await getUserQuestions({ userId, page: 1 });
 
   return (
     <div>

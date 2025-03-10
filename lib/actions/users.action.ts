@@ -172,18 +172,21 @@ export const getSavedQuestions = async (params: GetSavedQuestionsParms) => {
 question author of that question with the user id and then populate that question in the query and that question
 will be returned.  */
 
-export const getUserQuestions = async ({ userId }: GetUserPostsParams) => {
+export const getUserQuestions = async (params: GetUserPostsParams) => {
   try {
     connectToDatabase();
 
-    const user = await User.findOne({ clerkId: userId });
+    const { userId, page = 1, pageSize = 10 } = params;
 
-    const questions = await Question.find({ author: user._id })
+    const user = await User.findOne({ clerkId: userId });
+    const totalQuestions = await Question.countDocuments({ author: user._id });
+
+    const userQuestions = await Question.find({ author: user._id })
       .populate({ path: "tags", model: Tag })
       .populate({ path: "author", model: User })
-      .sort({ createdAt: -1 });
+      .sort({ views: -1, upvote: -1 });
 
-    return { questions };
+    return { totalQuestions, questions: userQuestions };
   } catch (error) {
     console.log(error);
     throw error;
@@ -192,17 +195,18 @@ export const getUserQuestions = async ({ userId }: GetUserPostsParams) => {
 
 // Get all user answers
 
-export const getUserAnswers = async ({ userId }: GetUserPostsParams) => {
+export const getUserAnswers = async (params: GetUserPostsParams) => {
   try {
     connectToDatabase();
+    const { userId, page = 1, pageSize = 10 } = params;
     const user = await User.findOne({ clerkId: userId });
-    const answers = await Answer.find({ author: user._id })
+    const totalAnswers = await Answer.countDocuments({ author: user._id });
+    const userAnswers = await Answer.find({ author: user._id })
       .populate({ path: "question", model: Question })
       .populate({ path: "author", model: User })
-      .sort({ createdAt: -1 });
+      .sort({ views: -1, upvotes: -1 });
 
-    console.log(answers, " user answers");
-    return { answers };
+    return { totalAnswers, answers: userAnswers };
   } catch (error) {
     console.log(error);
     throw error;

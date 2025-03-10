@@ -7,7 +7,7 @@ interface Props {
   userId: string;
 }
 const UserAnswers = async ({ userId }: Props) => {
-  const answersResult = await getUserAnswers({ userId });
+  const answersResult = await getUserAnswers({ userId, page: 1 });
   console.log(answersResult, "answers in frontend");
   return (
     <div>
@@ -17,7 +17,7 @@ const UserAnswers = async ({ userId }: Props) => {
         ))
       ) : (
         <NoResult
-          title="There’s no question to show"
+          title="There’s no answer to show"
           description="Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. our query could be the next big thing others learn from. Get involved! 💡"
           btnText="Ask a Question"
         />

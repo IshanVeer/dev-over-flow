@@ -34,6 +34,8 @@ export interface GetUserInfoParams {
 }
 export interface GetUserPostsParams {
   userId?: string;
+  page: number;
+  pageSize: number;
 }
 // Question Params
 export interface CreateQuestionsParams {
