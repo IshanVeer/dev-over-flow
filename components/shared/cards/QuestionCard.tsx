@@ -55,16 +55,16 @@ const QuestionCard = ({
             <Button className="p-2">
               <Image
                 src="/assets/icons/edit.svg"
-                width={20}
-                height={20}
+                width={16}
+                height={16}
                 alt="edit"
               />
             </Button>
             <Button className="p-2">
               <Image
                 src="/assets/icons/trash.svg"
-                width={20}
-                height={20}
+                width={16}
+                height={16}
                 alt="delete"
               />
             </Button>

@@ -10,7 +10,7 @@ import React from "react";
 
 const Tags = async () => {
   const result = await getAllTags();
-  console.log(result.tags, "tags");
+
   return (
     <>
       <h1 className="h1-bold text-dark400_light900">Tags</h1>

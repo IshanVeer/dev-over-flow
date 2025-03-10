@@ -12,7 +12,6 @@ interface Props {
 
 const AllAnswers = async ({ questionId, userId }: Props) => {
   const answerResult = await getAnswers({ questionId });
-  console.log(answerResult, "answers");
 
   return (
     <div className=" light-border my-8 border-b">

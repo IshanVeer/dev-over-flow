@@ -34,8 +34,6 @@ const AnswerCard = ({
   userLoggedIn,
   showUpdateButton,
 }: AnswerProps) => {
-  console.log(answer.question, "answer card values");
-  console.log(answer.question.title, "answer titles");
   return (
     <Card padding="px-12 py-8 light-border border" margin="mb-6">
       <p className="small-regular text-dark200_light800 mb-3 sm:hidden">
@@ -58,8 +56,8 @@ const AnswerCard = ({
             <Button className="p-2">
               <Image
                 src="/assets/icons/trash.svg"
-                width={20}
-                height={20}
+                width={16}
+                height={16}
                 alt="delete"
               />
             </Button>

@@ -9,7 +9,7 @@ interface Props {
 }
 const UserAnswers = async ({ userId, userLoggedIn }: Props) => {
   const answersResult = await getUserAnswers({ userId, page: 1 });
-  console.log(answersResult, "answers in frontend");
+
   return (
     <div>
       {answersResult.answers.length > 0 ? (

@@ -55,7 +55,6 @@ const AnswerForm = ({ author, questionId }: Props) => {
     }
 
     setIsSubmitting(false);
-    console.log("form submitted");
   }
 
   return (
