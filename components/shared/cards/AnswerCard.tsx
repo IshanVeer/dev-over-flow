@@ -2,8 +2,10 @@ import Card from "@/components/ui/Card";
 import { getTimestamp, formatAndDivide } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
-
+import Image from "next/image";
 import UserMetrics from "../UserMetrics";
+
+import { Button } from "@/components/ui/button";
 
 interface author {
   _id: string;
@@ -23,9 +25,15 @@ interface answer {
 }
 interface AnswerProps {
   answer: answer;
+  userLoggedIn: boolean;
+  showUpdateButton: boolean;
 }
 
-const AnswerCard = ({ answer }: AnswerProps) => {
+const AnswerCard = ({
+  answer,
+  userLoggedIn,
+  showUpdateButton,
+}: AnswerProps) => {
   console.log(answer.question, "answer card values");
   console.log(answer.question.title, "answer titles");
   return (
@@ -34,11 +42,30 @@ const AnswerCard = ({ answer }: AnswerProps) => {
         {getTimestamp(answer.createdAt)}
       </p>
 
-      <Link href={`/questions/${answer.question._id}`}>
+      {/* <Link href={`/questions/${answer.question._id}`}>
         <h3 className="h3-semibold text-dark400_light900 mb-4 line-clamp-1 ">
           {answer.question.title}
         </h3>
-      </Link>
+      </Link> */}
+      <div className="flex items-center justify-between">
+        <Link href={`/questions/${answer.question._id}`}>
+          <h3 className="h3-semibold text-dark400_light900 mb-4 line-clamp-1 ">
+            {answer.question.title}
+          </h3>
+        </Link>
+        {userLoggedIn && showUpdateButton ? (
+          <div className="flex items-center">
+            <Button className="p-2">
+              <Image
+                src="/assets/icons/trash.svg"
+                width={20}
+                height={20}
+                alt="delete"
+              />
+            </Button>
+          </div>
+        ) : null}
+      </div>
 
       <div className=" flex flex-wrap items-center justify-between ">
         {/* profile */}

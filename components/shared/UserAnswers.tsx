@@ -5,15 +5,21 @@ import NoResult from "./NoResult";
 
 interface Props {
   userId: string;
+  userLoggedIn: boolean;
 }
-const UserAnswers = async ({ userId }: Props) => {
+const UserAnswers = async ({ userId, userLoggedIn }: Props) => {
   const answersResult = await getUserAnswers({ userId, page: 1 });
   console.log(answersResult, "answers in frontend");
   return (
     <div>
       {answersResult.answers.length > 0 ? (
         answersResult.answers.map((answer) => (
-          <AnswerCard key={answer._id} answer={answer} />
+          <AnswerCard
+            key={answer._id}
+            userLoggedIn={userLoggedIn}
+            showUpdateButton={true}
+            answer={answer}
+          />
         ))
       ) : (
         <NoResult

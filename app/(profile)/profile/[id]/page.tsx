@@ -109,7 +109,7 @@ const Profile = async ({ params, searchParams }: URLProps) => {
           </TabsContent>
           {/* top answers */}
           <TabsContent value="answers">
-            <UserAnswers userId={id} />
+            <UserAnswers userLoggedIn={userLoggedIn} userId={id} />
           </TabsContent>
         </Tabs>
 
