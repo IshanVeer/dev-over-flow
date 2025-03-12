@@ -37,7 +37,7 @@ export const getAnswers = async (params: GetAnswersParams) => {
   try {
     connectToDatabase();
     const { questionId } = params;
-    const answers = await Answer.find({ questionId })
+    const answers = await Answer.find({ question: questionId })
       .populate({
         path: "author",
         model: User,

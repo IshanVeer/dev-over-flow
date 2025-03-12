@@ -59,7 +59,7 @@ const AnswerForm = ({ author, questionId }: Props) => {
 
   return (
     <>
-      <div className="mb-4 flex items-center justify-between">
+      <div className="my-4 flex items-center justify-between">
         <h3 className="paragraph-semibold text-dark200_light900 ">
           Write your answer here
         </h3>
