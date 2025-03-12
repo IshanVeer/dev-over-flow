@@ -8,6 +8,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Editor } from "@tinymce/tinymce-react";
+import { Editor as TinyMCEEditor } from "tinymce";
 import { AnswerSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -36,7 +37,7 @@ const AnswerForm = ({ author, questionId }: Props) => {
     },
   });
   //   initialising editor ref
-  const editorRef = useRef(null);
+  const editorRef = useRef<TinyMCEEditor | null>(null);
 
   //   submit handler
   async function onSubmit(values: z.infer<typeof AnswerSchema>) {
@@ -49,6 +50,11 @@ const AnswerForm = ({ author, questionId }: Props) => {
         author: JSON.parse(author),
         question: JSON.parse(questionId),
       });
+
+      form.reset();
+      if (editorRef.current) {
+        editorRef.current.setContent("");
+      }
     } catch (error) {
       console.log(error, "error");
       throw error;
