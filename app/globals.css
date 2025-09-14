@@ -256,38 +256,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-@utility flex-center {
-  @apply flex justify-center items-center;
-}
-
-@utility flex-between {
-  @apply flex justify-between items-center;
-}
-
-@utility flex-start {
-  @apply flex justify-start items-center;
-}
-
-@utility btn {
-  @apply bg-light-800! dark:bg-dark-300!;
-}
-
-@utility btn-secondary {
-  @apply bg-light-800! dark:bg-dark-400!;
-}
-
-@utility btn-tertiary {
-  @apply bg-light-700! dark:bg-dark-300!;
-}
-
-@utility no-focus {
-  @apply focus-visible:ring-0! focus-visible:ring-transparent! focus-visible:ring-offset-0!;
-}
-
-@utility tab {
-  @apply min-h-full! dark:bg-dark-400! bg-light-800! text-light-500! dark:data-[state=active]:bg-dark-300! data-[state=active]:bg-primary-100! data-[state=active]:text-primary-500!;
-}
-
 body {
   font-family: "Inter", sans-serif;
 }
