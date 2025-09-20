@@ -21,7 +21,7 @@ const Theme = () => {
             alt="dark"
             height={24}
             width={24}
-            className="active-theme"
+            className="active-theme w-5 sm:w-6"
           />
         ) : (
           <Image
@@ -29,7 +29,7 @@ const Theme = () => {
             alt="dark"
             height={24}
             width={24}
-            className="active-theme"
+            className="active-theme w-5 sm:w-6"
           />
         )}
       </DropdownMenuTrigger>
