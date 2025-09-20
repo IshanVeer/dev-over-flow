@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 const LeftSidebar = () => {
   const pathname = usePathname();
   return (
-    <div className="w-[280px] max-sm:hidden background-light900_dark300 min-h-screen px-6">
+    <div className="w-[280px] max-sm:hidden background-light900_dark200 min-h-screen px-6">
       <ul className="flex flex-col gap-6 mt-16">
         {sidebarLinks.map((link) => (
           <li

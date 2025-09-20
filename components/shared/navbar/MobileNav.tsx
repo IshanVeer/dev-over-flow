@@ -12,7 +12,7 @@ const MobileNav = () => {
   const { mode } = useTheme();
   const pathname = usePathname();
   return (
-    <div className="min-sm:hidden py-4 px-5 flex items-center justify-between background-light900_dark300">
+    <div className="min-sm:hidden py-4 px-5 flex items-center justify-between background-light900_dark200">
       {mode === "dark" ? (
         <Image
           src="/assets/images/logo-dark.svg"

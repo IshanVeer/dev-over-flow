@@ -8,7 +8,7 @@ import { useTheme } from "@/context/ThemeProvider";
 const Navbar = () => {
   const { mode } = useTheme();
   return (
-    <div className="max-sm:hidden flex items-center justify-between py-6 pr-14 pl-6 background-light900_dark300">
+    <div className="max-sm:hidden flex items-center justify-between py-6 pr-14 pl-6 background-light900_dark200">
       {/* logo */}
       <div>
         {mode === "dark" ? (
