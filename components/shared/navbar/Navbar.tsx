@@ -2,13 +2,13 @@
 import Image from "next/image";
 import React from "react";
 import GlobalSearch from "../GlobalSearch";
-import Theme from "../Theme";
+import Theme from "./Theme";
 import { useTheme } from "@/context/ThemeProvider";
 
 const Navbar = () => {
   const { mode } = useTheme();
   return (
-    <div className="max-sm:hidden flex items-center justify-between py-6 px-14 background-light900_dark300">
+    <div className="max-sm:hidden flex items-center justify-between py-6 pr-14 pl-6 background-light900_dark300">
       {/* logo */}
       <div>
         {mode === "dark" ? (

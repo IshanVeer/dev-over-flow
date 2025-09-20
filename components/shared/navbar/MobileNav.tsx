@@ -2,7 +2,7 @@
 import { useTheme } from "@/context/ThemeProvider";
 import Image from "next/image";
 import React from "react";
-import Theme from "../Theme";
+import Theme from "./Theme";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { sidebarLinks } from "@/constants";
 import Link from "next/link";

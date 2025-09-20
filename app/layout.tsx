@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <ThemeProvider>
         <body
-          className={` ${spaceGrotesk.variable} ${inter.variable} antialiased`}
+          className={` ${spaceGrotesk.variable} ${inter.variable} antialiased bg-light-800 dark:bg-dark-100`}
         >
           {children}
         </body>
