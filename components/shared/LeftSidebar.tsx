@@ -15,7 +15,7 @@ const LeftSidebar = () => {
             key={link.route}
             className={`${
               pathname === link.route ? "primary-gradient text-light-900" : ""
-            } p-4 rounded-[8px]`}
+            } p-4 rounded-[8px] hover:bg-dark-300 transition duration-150`}
           >
             <Link href={link.route} className="flex items-center gap-4">
               <Image
