@@ -260,6 +260,9 @@
 @utility primary-gradient {
   background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
 }
+@utility primary-gradient-dark {
+  background: linear-gradient(129deg, #cc5a00 0%, #b87a4c 100%);
+}
 
 @utility dark-gradient {
   background: linear-gradient(

@@ -11,7 +11,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <MobileNav />
       <section className="flex justify-between">
         <LeftSidebar />
-        <div>{children}</div>
+        <div className="flex-1 px-10 pt-16">{children}</div>
         <RightSidebar />
       </section>
     </main>
