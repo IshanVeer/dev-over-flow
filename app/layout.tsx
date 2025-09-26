@@ -3,6 +3,8 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/context/ThemeProvider";
 import { Toaster } from "sonner";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
@@ -16,21 +18,24 @@ export const metadata: Metadata = {
   description: "Stackoverflow clone",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
     <html lang="en">
-      <ThemeProvider>
-        <body
-          className={` ${spaceGrotesk.variable} ${inter.variable} antialiased bg-light-800 dark:bg-dark-100`}
-        >
-          {children}
-          <Toaster richColors position="top-center" />
-        </body>
-      </ThemeProvider>
+      <SessionProvider session={session}>
+        <ThemeProvider>
+          <body
+            className={` ${spaceGrotesk.variable} ${inter.variable} antialiased bg-light-800 dark:bg-dark-100`}
+          >
+            {children}
+            <Toaster richColors position="top-center" />
+          </body>
+        </ThemeProvider>
+      </SessionProvider>
     </html>
   );
 }

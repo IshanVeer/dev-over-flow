@@ -3,6 +3,8 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { toast } from "sonner";
+import { signIn } from "next-auth/react";
+import ROUTES from "@/constants/routes";
 
 const SocialAuthForms = () => {
   const buttonClasses =
@@ -10,7 +12,7 @@ const SocialAuthForms = () => {
 
   const handleSignIn = async (provider: "github" | "google") => {
     try {
-      throw new Error("Not implemented");
+      await signIn(provider, { callbackUrl: ROUTES.HOME });
     } catch (error) {
       console.log(error);
 
