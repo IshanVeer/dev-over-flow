@@ -23,12 +23,6 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import ROUTES from "@/constants/routes";
 
-// const formSchema = z.object({
-//   username: z.string().min(2, {
-//     message: "Username must be at least 2 characters.",
-//   }),
-// });
-
 interface AuthFormProps<T extends FieldValues> {
   formType: "SIGN_IN" | "SIGN_UP";
   schema: ZodType<T>;
@@ -85,7 +79,7 @@ const AuthForm = <T extends FieldValues>({
         ))}
 
         <Button
-          className="w-full min-h-12 primary-gradient text-light-900 !paragraph-semibold"
+          className="w-full cursor-pointer min-h-12 primary-gradient text-light-900 !paragraph-semibold"
           disabled={form.formState.isSubmitting}
         >
           {form.formState.isSubmitting

@@ -9,7 +9,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   return (
     <main className="w-full px-4 py-10 flex items-center justify-center min-h-screen bg-[url(/assets/images/auth-light.png)] dark:bg-[url(/assets/images/auth-dark.png)] bg-cover bg-no-repeat">
-      <section className="min-w-[520px] background-light800_dark200 px-8 py-10">
+      <section className="min-w-[520px] background-light800_dark200 px-8 py-10 rounded-[8px]">
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-2">
             {pathname === "/sign-in" ? (
